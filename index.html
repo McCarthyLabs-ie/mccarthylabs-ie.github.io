@@ -1,11 +1,479 @@
 <!doctype html>
-<html>
-  <head>
-    <meta charset="utf-8" />
-    <title>McCarthy Labs</title>
-  </head>
-  <body>
-    <h1>McCarthy Labs</h1>
-    <p>Site coming soon.</p>
-  </body>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="McCarthy Labs. Cybersecurity lab focused on digital forensics, defensive engineering, and practical research." />
+  <title>McCarthy Labs</title>
+
+  <style>
+    :root{
+      --bg: #070A12;
+      --panel: rgba(255,255,255,0.06);
+      --panel2: rgba(255,255,255,0.04);
+      --text: rgba(255,255,255,0.92);
+      --muted: rgba(255,255,255,0.72);
+      --faint: rgba(255,255,255,0.52);
+      --border: rgba(255,255,255,0.14);
+      --accent: #7CFFB2;
+      --accent2: #67B6FF;
+      --danger: #FF6B6B;
+      --shadow: 0 18px 60px rgba(0,0,0,0.55);
+      --radius: 18px;
+      --radius2: 26px;
+      --max: 1100px;
+    }
+
+    *{ box-sizing: border-box; }
+    html, body{ height: 100%; }
+    body{
+      margin: 0;
+      color: var(--text);
+      background: radial-gradient(1000px 600px at 15% 10%, rgba(124,255,178,0.12), transparent 60%),
+                  radial-gradient(900px 520px at 90% 20%, rgba(103,182,255,0.12), transparent 60%),
+                  radial-gradient(1000px 700px at 50% 100%, rgba(124,255,178,0.08), transparent 55%),
+                  var(--bg);
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      line-height: 1.45;
+    }
+
+    a{ color: inherit; text-decoration: none; }
+    a:hover{ text-decoration: none; }
+
+    .wrap{
+      min-height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header{
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 28px 18px 0 18px;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .brand{
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .mark{
+      width: 44px;
+      height: 44px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, rgba(124,255,178,0.9), rgba(103,182,255,0.9));
+      box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .mark::after{
+      content: "";
+      position: absolute;
+      inset: -40%;
+      background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.55), transparent 55%);
+      transform: rotate(10deg);
+    }
+
+    .brand h1{
+      font-size: 16px;
+      margin: 0;
+      letter-spacing: 0.4px;
+      font-weight: 700;
+    }
+
+    .brand p{
+      margin: 2px 0 0 0;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    nav{
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .pill{
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 12px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.03);
+      border-radius: 999px;
+      color: var(--muted);
+      font-size: 13px;
+      transition: transform 120ms ease, border-color 120ms ease, background 120ms ease;
+      user-select: none;
+    }
+
+    .pill:hover{
+      transform: translateY(-1px);
+      border-color: rgba(255,255,255,0.22);
+      background: rgba(255,255,255,0.05);
+    }
+
+    main{
+      width: 100%;
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 44px 18px 42px 18px;
+      flex: 1;
+    }
+
+    .hero{
+      border: 1px solid rgba(255,255,255,0.12);
+      background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));
+      border-radius: var(--radius2);
+      box-shadow: var(--shadow);
+      padding: 28px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .hero::before{
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(700px 260px at 30% 0%, rgba(124,255,178,0.14), transparent 60%),
+        radial-gradient(700px 260px at 80% 20%, rgba(103,182,255,0.14), transparent 60%);
+      pointer-events: none;
+    }
+
+    .grid{
+      display: grid;
+      grid-template-columns: 1.35fr 0.65fr;
+      gap: 18px;
+      position: relative;
+      z-index: 1;
+    }
+
+    @media (max-width: 920px){
+      .grid{ grid-template-columns: 1fr; }
+    }
+
+    .kicker{
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.14);
+      background: rgba(0,0,0,0.18);
+      color: var(--muted);
+      font-size: 13px;
+      width: fit-content;
+      margin-bottom: 14px;
+    }
+
+    .dot{
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: var(--accent);
+      box-shadow: 0 0 0 6px rgba(124,255,178,0.12);
+    }
+
+    .title{
+      font-size: 44px;
+      line-height: 1.05;
+      margin: 0 0 12px 0;
+      letter-spacing: -0.6px;
+    }
+
+    @media (max-width: 520px){
+      .title{ font-size: 36px; }
+    }
+
+    .subtitle{
+      margin: 0 0 18px 0;
+      color: var(--muted);
+      font-size: 16px;
+      max-width: 62ch;
+    }
+
+    .ctaRow{
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 6px;
+    }
+
+    .btn{
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 12px 14px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.14);
+      background: rgba(255,255,255,0.04);
+      color: var(--text);
+      font-weight: 650;
+      font-size: 14px;
+      transition: transform 120ms ease, border-color 120ms ease, background 120ms ease;
+    }
+
+    .btn:hover{
+      transform: translateY(-1px);
+      border-color: rgba(255,255,255,0.24);
+      background: rgba(255,255,255,0.06);
+    }
+
+    .btnPrimary{
+      border: 1px solid rgba(124,255,178,0.35);
+      background: linear-gradient(135deg, rgba(124,255,178,0.18), rgba(103,182,255,0.14));
+    }
+
+    .panel{
+      border-radius: var(--radius);
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(0,0,0,0.22);
+      padding: 16px;
+    }
+
+    .panel h3{
+      margin: 0 0 10px 0;
+      font-size: 14px;
+      letter-spacing: 0.2px;
+    }
+
+    .kv{
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+
+    .kvItem{
+      padding: 12px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.10);
+      background: rgba(255,255,255,0.03);
+    }
+
+    .kvItem .label{
+      font-size: 12px;
+      color: var(--faint);
+      margin-bottom: 6px;
+      letter-spacing: 0.25px;
+      text-transform: uppercase;
+    }
+
+    .kvItem .value{
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    .section{
+      margin-top: 22px;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 14px;
+    }
+
+    @media (max-width: 920px){
+      .section{ grid-template-columns: 1fr; }
+    }
+
+    .card{
+      border-radius: var(--radius);
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.03);
+      padding: 18px;
+      transition: transform 120ms ease, border-color 120ms ease, background 120ms ease;
+    }
+
+    .card:hover{
+      transform: translateY(-1px);
+      border-color: rgba(255,255,255,0.22);
+      background: rgba(255,255,255,0.05);
+    }
+
+    .card h4{
+      margin: 0 0 8px 0;
+      font-size: 15px;
+      letter-spacing: 0.2px;
+    }
+
+    .card p{
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .mono{
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      color: rgba(255,255,255,0.85);
+    }
+
+    footer{
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 0 18px 28px 18px;
+      width: 100%;
+      color: var(--faint);
+      font-size: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .smallLinks{
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .smallLinks a{
+      color: var(--faint);
+      border-bottom: 1px solid transparent;
+    }
+
+    .smallLinks a:hover{
+      color: var(--muted);
+      border-bottom-color: rgba(255,255,255,0.22);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <header>
+      <div class="brand">
+        <div class="mark" aria-hidden="true"></div>
+        <div>
+          <h1>McCarthy Labs</h1>
+          <p>Cybersecurity lab and digital forensics</p>
+        </div>
+      </div>
+
+      <nav>
+        <a class="pill" href="#focus">Focus</a>
+        <a class="pill" href="#work">Work</a>
+        <a class="pill" href="#contact">Contact</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="grid">
+          <div>
+            <div class="kicker">
+              <span class="dot" aria-hidden="true"></span>
+              <span class="mono">defensive research</span>
+              <span class="mono">forensics</span>
+              <span class="mono">automation</span>
+            </div>
+
+            <h2 class="title">Practical security work, built clean and documented.</h2>
+
+            <p class="subtitle">
+              McCarthy Labs is a small research and build space focused on digital forensics, threat aware engineering,
+              and repeatable security tooling. Real world problems, sharp write ups, and runnable projects.
+            </p>
+
+            <div class="ctaRow" id="contact">
+              <a class="btn btnPrimary" href="mailto:hello@mccarthylabs.ie">Email hello@mccarthylabs.ie</a>
+              <a class="btn" href="https://github.com/McCarthyLabs-ie" target="_blank" rel="noreferrer">GitHub</a>
+              <a class="btn" href="https://www.linkedin.com" target="_blank" rel="noreferrer">LinkedIn</a>
+            </div>
+
+            <p style="margin:14px 0 0 0;color:var(--faint);font-size:13px;">
+              Tip: Replace the LinkedIn link with your real profile, and change the email if you want.
+            </p>
+          </div>
+
+          <aside class="panel">
+            <h3 class="mono">Status</h3>
+            <div class="kv">
+              <div class="kvItem">
+                <div class="label">Publishing</div>
+                <div class="value">GitHub Pages on <span class="mono">mccarthylabs.ie</span></div>
+              </div>
+              <div class="kvItem">
+                <div class="label">Primary focus</div>
+                <div class="value">Digital forensics, SOC adjacent tooling, defensive automation</div>
+              </div>
+              <div class="kvItem">
+                <div class="label">Principles</div>
+                <div class="value">Reproducible steps, minimal fluff, strong documentation</div>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="section" id="focus">
+        <div class="card">
+          <h4>Digital forensics</h4>
+          <p>
+            Acquisition notes, triage workflows, timelines, artifacts, and clean reporting templates.
+          </p>
+        </div>
+
+        <div class="card">
+          <h4>Defensive engineering</h4>
+          <p>
+            Hardening, monitoring, and detection logic that is measurable and maintainable.
+          </p>
+        </div>
+
+        <div class="card">
+          <h4>Automation and tooling</h4>
+          <p>
+            Small tools that remove friction. Scripts, parsers, dashboards, and repeatable lab setups.
+          </p>
+        </div>
+      </section>
+
+      <section class="section" id="work">
+        <div class="card">
+          <h4>Current work</h4>
+          <p>
+            Building the lab footprint, publishing notes, and shipping the first set of repos.
+          </p>
+        </div>
+
+        <div class="card">
+          <h4>Coming soon</h4>
+          <p>
+            Incident style write ups, detection playbooks, and a forensics starter kit repo.
+          </p>
+        </div>
+
+        <div class="card">
+          <h4>Contact</h4>
+          <p>
+            Email works best. If you want a contact form later, we can add one with a simple serverless backend.
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div>© <span id="year"></span> McCarthy Labs. Built on GitHub Pages.</div>
+      <div class="smallLinks">
+        <a href="https://github.com/McCarthyLabs-ie" target="_blank" rel="noreferrer">GitHub</a>
+        <a href="#contact">Email</a>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
 </html>

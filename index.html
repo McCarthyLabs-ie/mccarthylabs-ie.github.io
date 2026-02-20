@@ -1,479 +1,293 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <meta name="description" content="McCarthy Labs. Cybersecurity lab focused on digital forensics, defensive engineering, and practical research." />
-  <title>McCarthy Labs</title>
-
-  <style>
-    :root{
-      --bg: #070A12;
-      --panel: rgba(255,255,255,0.06);
-      --panel2: rgba(255,255,255,0.04);
-      --text: rgba(255,255,255,0.92);
-      --muted: rgba(255,255,255,0.72);
-      --faint: rgba(255,255,255,0.52);
-      --border: rgba(255,255,255,0.14);
-      --accent: #7CFFB2;
-      --accent2: #67B6FF;
-      --danger: #FF6B6B;
-      --shadow: 0 18px 60px rgba(0,0,0,0.55);
-      --radius: 18px;
-      --radius2: 26px;
-      --max: 1100px;
-    }
-
-    *{ box-sizing: border-box; }
-    html, body{ height: 100%; }
-    body{
-      margin: 0;
-      color: var(--text);
-      background: radial-gradient(1000px 600px at 15% 10%, rgba(124,255,178,0.12), transparent 60%),
-                  radial-gradient(900px 520px at 90% 20%, rgba(103,182,255,0.12), transparent 60%),
-                  radial-gradient(1000px 700px at 50% 100%, rgba(124,255,178,0.08), transparent 55%),
-                  var(--bg);
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
-      line-height: 1.45;
-    }
-
-    a{ color: inherit; text-decoration: none; }
-    a:hover{ text-decoration: none; }
-
-    .wrap{
-      min-height: 100%;
-      display: flex;
-      flex-direction: column;
-    }
-
-    header{
-      max-width: var(--max);
-      margin: 0 auto;
-      padding: 28px 18px 0 18px;
-      width: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-    }
-
-    .brand{
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .mark{
-      width: 44px;
-      height: 44px;
-      border-radius: 14px;
-      background: linear-gradient(135deg, rgba(124,255,178,0.9), rgba(103,182,255,0.9));
-      box-shadow: 0 10px 30px rgba(0,0,0,0.35);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .mark::after{
-      content: "";
-      position: absolute;
-      inset: -40%;
-      background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.55), transparent 55%);
-      transform: rotate(10deg);
-    }
-
-    .brand h1{
-      font-size: 16px;
-      margin: 0;
-      letter-spacing: 0.4px;
-      font-weight: 700;
-    }
-
-    .brand p{
-      margin: 2px 0 0 0;
-      font-size: 12px;
-      color: var(--muted);
-    }
-
-    nav{
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      flex-wrap: wrap;
-      justify-content: flex-end;
-    }
-
-    .pill{
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 10px 12px;
-      border: 1px solid var(--border);
-      background: rgba(255,255,255,0.03);
-      border-radius: 999px;
-      color: var(--muted);
-      font-size: 13px;
-      transition: transform 120ms ease, border-color 120ms ease, background 120ms ease;
-      user-select: none;
-    }
-
-    .pill:hover{
-      transform: translateY(-1px);
-      border-color: rgba(255,255,255,0.22);
-      background: rgba(255,255,255,0.05);
-    }
-
-    main{
-      width: 100%;
-      max-width: var(--max);
-      margin: 0 auto;
-      padding: 44px 18px 42px 18px;
-      flex: 1;
-    }
-
-    .hero{
-      border: 1px solid rgba(255,255,255,0.12);
-      background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));
-      border-radius: var(--radius2);
-      box-shadow: var(--shadow);
-      padding: 28px;
-      overflow: hidden;
-      position: relative;
-    }
-
-    .hero::before{
-      content: "";
-      position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(700px 260px at 30% 0%, rgba(124,255,178,0.14), transparent 60%),
-        radial-gradient(700px 260px at 80% 20%, rgba(103,182,255,0.14), transparent 60%);
-      pointer-events: none;
-    }
-
-    .grid{
-      display: grid;
-      grid-template-columns: 1.35fr 0.65fr;
-      gap: 18px;
-      position: relative;
-      z-index: 1;
-    }
-
-    @media (max-width: 920px){
-      .grid{ grid-template-columns: 1fr; }
-    }
-
-    .kicker{
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 8px 12px;
-      border-radius: 999px;
-      border: 1px solid rgba(255,255,255,0.14);
-      background: rgba(0,0,0,0.18);
-      color: var(--muted);
-      font-size: 13px;
-      width: fit-content;
-      margin-bottom: 14px;
-    }
-
-    .dot{
-      width: 8px;
-      height: 8px;
-      border-radius: 999px;
-      background: var(--accent);
-      box-shadow: 0 0 0 6px rgba(124,255,178,0.12);
-    }
-
-    .title{
-      font-size: 44px;
-      line-height: 1.05;
-      margin: 0 0 12px 0;
-      letter-spacing: -0.6px;
-    }
-
-    @media (max-width: 520px){
-      .title{ font-size: 36px; }
-    }
-
-    .subtitle{
-      margin: 0 0 18px 0;
-      color: var(--muted);
-      font-size: 16px;
-      max-width: 62ch;
-    }
-
-    .ctaRow{
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-      margin-top: 6px;
-    }
-
-    .btn{
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      padding: 12px 14px;
-      border-radius: 12px;
-      border: 1px solid rgba(255,255,255,0.14);
-      background: rgba(255,255,255,0.04);
-      color: var(--text);
-      font-weight: 650;
-      font-size: 14px;
-      transition: transform 120ms ease, border-color 120ms ease, background 120ms ease;
-    }
-
-    .btn:hover{
-      transform: translateY(-1px);
-      border-color: rgba(255,255,255,0.24);
-      background: rgba(255,255,255,0.06);
-    }
-
-    .btnPrimary{
-      border: 1px solid rgba(124,255,178,0.35);
-      background: linear-gradient(135deg, rgba(124,255,178,0.18), rgba(103,182,255,0.14));
-    }
-
-    .panel{
-      border-radius: var(--radius);
-      border: 1px solid rgba(255,255,255,0.12);
-      background: rgba(0,0,0,0.22);
-      padding: 16px;
-    }
-
-    .panel h3{
-      margin: 0 0 10px 0;
-      font-size: 14px;
-      letter-spacing: 0.2px;
-    }
-
-    .kv{
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 10px;
-    }
-
-    .kvItem{
-      padding: 12px;
-      border-radius: 14px;
-      border: 1px solid rgba(255,255,255,0.10);
-      background: rgba(255,255,255,0.03);
-    }
-
-    .kvItem .label{
-      font-size: 12px;
-      color: var(--faint);
-      margin-bottom: 6px;
-      letter-spacing: 0.25px;
-      text-transform: uppercase;
-    }
-
-    .kvItem .value{
-      font-size: 14px;
-      color: var(--muted);
-    }
-
-    .section{
-      margin-top: 22px;
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      gap: 14px;
-    }
-
-    @media (max-width: 920px){
-      .section{ grid-template-columns: 1fr; }
-    }
-
-    .card{
-      border-radius: var(--radius);
-      border: 1px solid rgba(255,255,255,0.12);
-      background: rgba(255,255,255,0.03);
-      padding: 18px;
-      transition: transform 120ms ease, border-color 120ms ease, background 120ms ease;
-    }
-
-    .card:hover{
-      transform: translateY(-1px);
-      border-color: rgba(255,255,255,0.22);
-      background: rgba(255,255,255,0.05);
-    }
-
-    .card h4{
-      margin: 0 0 8px 0;
-      font-size: 15px;
-      letter-spacing: 0.2px;
-    }
-
-    .card p{
-      margin: 0;
-      color: var(--muted);
-      font-size: 14px;
-    }
-
-    .mono{
-      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-      color: rgba(255,255,255,0.85);
-    }
-
-    footer{
-      max-width: var(--max);
-      margin: 0 auto;
-      padding: 0 18px 28px 18px;
-      width: 100%;
-      color: var(--faint);
-      font-size: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
-
-    .smallLinks{
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      justify-content: flex-end;
-    }
-
-    .smallLinks a{
-      color: var(--faint);
-      border-bottom: 1px solid transparent;
-    }
-
-    .smallLinks a:hover{
-      color: var(--muted);
-      border-bottom-color: rgba(255,255,255,0.22);
-    }
-  </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>McCarthyLabs | Ian McCarthy — Cybersecurity Portfolio</title>
+  <meta name="description" content="Ian McCarthy — Medtech quality professional transitioning into cybersecurity. BSc Network Cybersecurity student. Based in Ireland." />
+  <meta name="keywords" content="cybersecurity portfolio, Ian McCarthy, mccarthylabs, network security, Ireland, BSc cybersecurity" />
+  <meta property="og:title" content="McCarthyLabs | Ian McCarthy" />
+  <meta property="og:description" content="Cybersecurity portfolio — from Medtech precision to digital security." />
+  <meta property="og:url" content="https://mccarthylabs.ie" />
+  <meta property="og:type" content="website" />
+  <link rel="canonical" href="https://mccarthylabs.ie/" />
+  <link rel="icon" href="assets/logo.png" type="image/png" />
+  <link rel="stylesheet" href="assets/style.css" />
 </head>
-
 <body>
-  <div class="wrap">
-    <header>
-      <div class="brand">
-        <div class="mark" aria-hidden="true"></div>
-        <div>
-          <h1>McCarthy Labs</h1>
-          <p>Cybersecurity lab and digital forensics</p>
-        </div>
-      </div>
 
-      <nav>
-        <a class="pill" href="#focus">Focus</a>
-        <a class="pill" href="#work">Work</a>
-        <a class="pill" href="#contact">Contact</a>
-      </nav>
-    </header>
-
-    <main>
-      <section class="hero">
-        <div class="grid">
-          <div>
-            <div class="kicker">
-              <span class="dot" aria-hidden="true"></span>
-              <span class="mono">defensive research</span>
-              <span class="mono">forensics</span>
-              <span class="mono">automation</span>
-            </div>
-
-            <h2 class="title">Practical security work, built clean and documented.</h2>
-
-            <p class="subtitle">
-              McCarthy Labs is a small research and build space focused on digital forensics, threat aware engineering,
-              and repeatable security tooling. Real world problems, sharp write ups, and runnable projects.
-            </p>
-
-            <div class="ctaRow" id="contact">
-              <a class="btn btnPrimary" href="mailto:hello@mccarthylabs.ie">Email hello@mccarthylabs.ie</a>
-              <a class="btn" href="https://github.com/McCarthyLabs-ie" target="_blank" rel="noreferrer">GitHub</a>
-              <a class="btn" href="https://www.linkedin.com" target="_blank" rel="noreferrer">LinkedIn</a>
-            </div>
-
-            <p style="margin:14px 0 0 0;color:var(--faint);font-size:13px;">
-              Tip: Replace the LinkedIn link with your real profile, and change the email if you want.
-            </p>
-          </div>
-
-          <aside class="panel">
-            <h3 class="mono">Status</h3>
-            <div class="kv">
-              <div class="kvItem">
-                <div class="label">Publishing</div>
-                <div class="value">GitHub Pages on <span class="mono">mccarthylabs.ie</span></div>
-              </div>
-              <div class="kvItem">
-                <div class="label">Primary focus</div>
-                <div class="value">Digital forensics, SOC adjacent tooling, defensive automation</div>
-              </div>
-              <div class="kvItem">
-                <div class="label">Principles</div>
-                <div class="value">Reproducible steps, minimal fluff, strong documentation</div>
-              </div>
-            </div>
-          </aside>
-        </div>
-      </section>
-
-      <section class="section" id="focus">
-        <div class="card">
-          <h4>Digital forensics</h4>
-          <p>
-            Acquisition notes, triage workflows, timelines, artifacts, and clean reporting templates.
-          </p>
-        </div>
-
-        <div class="card">
-          <h4>Defensive engineering</h4>
-          <p>
-            Hardening, monitoring, and detection logic that is measurable and maintainable.
-          </p>
-        </div>
-
-        <div class="card">
-          <h4>Automation and tooling</h4>
-          <p>
-            Small tools that remove friction. Scripts, parsers, dashboards, and repeatable lab setups.
-          </p>
-        </div>
-      </section>
-
-      <section class="section" id="work">
-        <div class="card">
-          <h4>Current work</h4>
-          <p>
-            Building the lab footprint, publishing notes, and shipping the first set of repos.
-          </p>
-        </div>
-
-        <div class="card">
-          <h4>Coming soon</h4>
-          <p>
-            Incident style write ups, detection playbooks, and a forensics starter kit repo.
-          </p>
-        </div>
-
-        <div class="card">
-          <h4>Contact</h4>
-          <p>
-            Email works best. If you want a contact form later, we can add one with a simple serverless backend.
-          </p>
-        </div>
-      </section>
-    </main>
-
-    <footer>
-      <div>© <span id="year"></span> McCarthy Labs. Built on GitHub Pages.</div>
-      <div class="smallLinks">
-        <a href="https://github.com/McCarthyLabs-ie" target="_blank" rel="noreferrer">GitHub</a>
-        <a href="#contact">Email</a>
-      </div>
-    </footer>
+<!-- ── Navigation ── -->
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <img src="assets/logo.png" alt="McCarthyLabs Logo" />
+      <span class="nav-logo-text">Mc<span>CARTHY</span>LABS</span>
+    </a>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">☰</button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html" class="active">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="ctf.html">CTF</a></li>
+      <li><a href="contact.html" class="nav-cta">Contact</a></li>
+    </ul>
   </div>
+</nav>
 
-  <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
-  </script>
+<main>
+
+  <!-- ── Hero ── -->
+  <section style="min-height:100vh; display:flex; align-items:center; padding-top:80px; position:relative; overflow:hidden;">
+
+    <!-- Decorative circuit lines -->
+    <div style="position:absolute;top:20%;right:5%;width:280px;height:280px;border:1px solid #1e2d4a;border-radius:50%;opacity:0.3;"></div>
+    <div style="position:absolute;top:25%;right:8%;width:180px;height:180px;border:1px solid #2563eb44;border-radius:50%;opacity:0.4;"></div>
+
+    <div class="container">
+      <div style="max-width:780px;">
+        <span class="eyebrow fade-up">// Initialising Portfolio v1.0</span>
+        <h1 class="fade-up-1">
+          Ian McCarthy<span style="color:var(--blue-light);">.</span><br/>
+          <span style="color:var(--text-2);font-weight:400;font-size:clamp(1.4rem,3vw,2.2rem);">Medtech Precision meets<br/>Cybersecurity.</span>
+        </h1>
+        <p class="fade-up-2" style="font-size:1.12rem;max-width:580px;margin-top:1.25rem;line-height:1.8;">
+          Quality professional with years of experience in regulated Medtech environments, now diving deep into <strong style="color:var(--text-1);">BSc Network Cybersecurity</strong>. Building skills in digital forensics, information security, and risk management.
+        </p>
+
+        <div class="flex flex-wrap gap-2 fade-up-3" style="margin-top:2rem;">
+          <a href="projects.html" class="btn btn-primary">View My Work</a>
+          <a href="about.html" class="btn btn-outline">About Me</a>
+        </div>
+
+        <!-- Stats row -->
+        <div class="flex flex-wrap gap-3 fade-up-4" style="margin-top:3rem;padding-top:2rem;border-top:1px solid var(--border);">
+          <div>
+            <div style="font-family:var(--font-head);font-size:1.8rem;font-weight:700;color:var(--text-1);">5+</div>
+            <div style="font-size:0.82rem;color:var(--text-3);letter-spacing:0.05em;">Years in Medtech Quality</div>
+          </div>
+          <div style="width:1px;background:var(--border);"></div>
+          <div>
+            <div style="font-family:var(--font-head);font-size:1.8rem;font-weight:700;color:var(--text-1);">BSc</div>
+            <div style="font-size:0.82rem;color:var(--text-3);letter-spacing:0.05em;">Network Cybersecurity 2025</div>
+          </div>
+          <div style="width:1px;background:var(--border);"></div>
+          <div>
+            <div style="font-family:var(--font-head);font-size:1.8rem;font-weight:700;color:var(--cyan);">IE</div>
+            <div style="font-size:0.82rem;color:var(--text-3);letter-spacing:0.05em;">Based in Ireland</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── About Snapshot ── -->
+  <section class="section" style="background:var(--bg-1);border-top:1px solid var(--border);border-bottom:1px solid var(--border);">
+    <div class="container">
+      <div class="grid-2" style="align-items:center;gap:4rem;">
+        <div>
+          <span class="eyebrow">// Who I Am</span>
+          <h2>From Manufacturing Floors to Digital Forensics</h2>
+          <p style="margin-top:1rem;">Detail-oriented and dependable, I spent years ensuring the highest standards of quality in Medtech — most recently in neurovascular devices at <strong style="color:var(--text-1);">Stryker</strong>. I thrive where precision, compliance, and collaboration matter.</p>
+          <p>In September 2025, I'm diving headfirst into cybersecurity, merging a strong regulated-environment foundation with emerging skills in digital forensics, information security, and risk management.</p>
+          <a href="about.html" class="btn btn-outline" style="margin-top:1rem;">Read My Full Story →</a>
+        </div>
+        <div style="display:flex;justify-content:center;">
+          <div style="position:relative;">
+            <div style="position:absolute;inset:-8px;border:1px solid var(--border-h);border-radius:20px;opacity:0.5;"></div>
+            <img src="assets/profile.jpg" alt="Ian McCarthy" style="width:300px;height:360px;object-fit:cover;border-radius:16px;display:block;" />
+            <div style="position:absolute;bottom:-1rem;left:-1rem;background:var(--bg-card);border:1px solid var(--border);border-radius:10px;padding:0.75rem 1rem;">
+              <div style="font-family:var(--font-head);font-size:0.75rem;color:var(--cyan);letter-spacing:0.1em;text-transform:uppercase;">Status</div>
+              <div style="font-size:0.9rem;color:var(--text-1);font-weight:500;">🎓 Studying · Open to Internships</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Skills Preview ── -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header text-center">
+        <span class="eyebrow">// Core Competencies</span>
+        <h2>Skills & Knowledge Areas</h2>
+      </div>
+      <div class="grid-3">
+        <div class="card text-center">
+          <div style="font-size:2rem;margin-bottom:0.75rem;">🔐</div>
+          <h3>Information Security</h3>
+          <p style="font-size:0.9rem;margin-top:0.5rem;">Risk management, compliance frameworks, and security policies from a regulated-industry background.</p>
+        </div>
+        <div class="card text-center">
+          <div style="font-size:2rem;margin-bottom:0.75rem;">🌐</div>
+          <h3>Network Security</h3>
+          <p style="font-size:0.9rem;margin-top:0.5rem;">BSc Network Cybersecurity — protocols, monitoring, threat analysis, and network defence fundamentals.</p>
+        </div>
+        <div class="card text-center">
+          <div style="font-size:2rem;margin-bottom:0.75rem;">🔬</div>
+          <h3>Digital Forensics</h3>
+          <p style="font-size:0.9rem;margin-top:0.5rem;">Evidence collection, analysis, and investigation techniques learned through academic and lab environments.</p>
+        </div>
+        <div class="card text-center">
+          <div style="font-size:2rem;margin-bottom:0.75rem;">📋</div>
+          <h3>Quality & Compliance</h3>
+          <p style="font-size:0.9rem;margin-top:0.5rem;">ISO standards, non-conformance management, process validation — from years in Medtech at Stryker.</p>
+        </div>
+        <div class="card text-center">
+          <div style="font-size:2rem;margin-bottom:0.75rem;">🛡️</div>
+          <h3>Risk Management</h3>
+          <p style="font-size:0.9rem;margin-top:0.5rem;">Structured risk assessment from medical device environments, now applied to cybersecurity contexts.</p>
+        </div>
+        <div class="card text-center">
+          <div style="font-size:2rem;margin-bottom:0.75rem;">🧪</div>
+          <h3>Hands-on Labs</h3>
+          <p style="font-size:0.9rem;margin-top:0.5rem;">TryHackMe learning paths, CTF challenges, and practical lab environments for real-world skill building.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Featured Projects ── -->
+  <section class="section" style="background:var(--bg-1);border-top:1px solid var(--border);border-bottom:1px solid var(--border);">
+    <div class="container">
+      <div class="section-header" style="display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:1rem;">
+        <div>
+          <span class="eyebrow">// Portfolio</span>
+          <h2>Projects</h2>
+        </div>
+        <a href="projects.html" class="btn btn-outline btn-sm">View All Projects →</a>
+      </div>
+      <div class="grid-3">
+        <!-- Placeholder projects — replace as you build -->
+        <div class="card">
+          <div class="flex items-center gap-2" style="margin-bottom:1rem;">
+            <span class="badge badge-cyan">In Progress</span>
+            <span class="badge badge-blue">Network</span>
+          </div>
+          <h3>Home Lab Setup</h3>
+          <p style="font-size:0.9rem;margin-top:0.5rem;">Building a virtualised security lab environment with Kali Linux, pfSense, and vulnerable VM targets for hands-on practice.</p>
+          <div class="flex flex-wrap gap-1" style="margin-top:1rem;">
+            <span class="badge badge-blue">Kali Linux</span>
+            <span class="badge badge-blue">pfSense</span>
+            <span class="badge badge-blue">VirtualBox</span>
+          </div>
+        </div>
+        <div class="card">
+          <div class="flex items-center gap-2" style="margin-bottom:1rem;">
+            <span class="badge badge-amber">Planning</span>
+            <span class="badge badge-cyan">Forensics</span>
+          </div>
+          <h3>Digital Forensics Case Studies</h3>
+          <p style="font-size:0.9rem;margin-top:0.5rem;">Documenting forensic investigation methodology through academic case studies and practical lab exercises from BSc coursework.</p>
+          <div class="flex flex-wrap gap-1" style="margin-top:1rem;">
+            <span class="badge badge-cyan">Autopsy</span>
+            <span class="badge badge-cyan">FTK Imager</span>
+          </div>
+        </div>
+        <div class="card">
+          <div class="flex items-center gap-2" style="margin-bottom:1rem;">
+            <span class="badge badge-amber">Coming Soon</span>
+          </div>
+          <h3>More Projects Loading...</h3>
+          <p style="font-size:0.9rem;margin-top:0.5rem;">As my BSc progresses, this space will fill with network monitoring tools, security scripts, and research projects. Check back regularly.</p>
+          <div class="flex flex-wrap gap-1" style="margin-top:1rem;">
+            <span class="badge badge-blue">Python</span>
+            <span class="badge badge-blue">Bash</span>
+            <span class="badge badge-blue">Wireshark</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Latest Blog ── -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header" style="display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:1rem;">
+        <div>
+          <span class="eyebrow">// Insights</span>
+          <h2>Latest Posts</h2>
+        </div>
+        <a href="blog.html" class="btn btn-outline btn-sm">All Posts →</a>
+      </div>
+      <div class="grid-2">
+        <a href="blog/from-medtech-to-cybersecurity.html" style="text-decoration:none;">
+          <div class="card" style="height:100%;">
+            <span class="badge badge-cyan" style="margin-bottom:1rem;display:inline-block;">Career</span>
+            <h3 style="color:var(--text-1);">From Medtech to Cybersecurity — Why I Made the Switch</h3>
+            <p style="font-size:0.9rem;margin-top:0.75rem;">After years ensuring quality in life-critical medical devices, I found my skills translate perfectly to digital security. Here's the full story.</p>
+            <div style="display:flex;align-items:center;gap:1rem;margin-top:1.25rem;font-size:0.82rem;color:var(--text-3);">
+              <span>📅 February 2025</span>
+              <span>⏱ 5 min read</span>
+            </div>
+          </div>
+        </a>
+        <div class="card" style="display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;border-style:dashed;">
+          <div style="font-size:2rem;margin-bottom:1rem;">✍️</div>
+          <h3 style="color:var(--text-2);">More posts coming soon</h3>
+          <p style="font-size:0.9rem;margin-top:0.5rem;">CTF write-ups, security research, and lessons from the BSc will be published regularly.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CTA Banner ── -->
+  <section style="background:linear-gradient(135deg,#0f172a,#1e3a5f);border-top:1px solid var(--border);padding:4rem 0;">
+    <div class="container text-center">
+      <span class="eyebrow">// Open to Opportunities</span>
+      <h2>Available for Internships & Junior Roles</h2>
+      <p style="max-width:520px;margin:1rem auto 2rem;">Especially in cybersecurity, information security, or GRC. If you value a calm, process-driven mindset and want to help shape a career transition — let's talk.</p>
+      <a href="contact.html" class="btn btn-primary">Get In Touch</a>
+    </div>
+  </section>
+
+</main>
+
+<!-- ── Footer ── -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-logo">
+        <img src="assets/logo.png" alt="McCarthyLabs" />
+        McCARTHYLABS
+      </div>
+      <ul class="footer-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="ctf.html">CTF</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <div class="footer-social">
+        <a href="https://github.com/mccarthylabs-ie" target="_blank" rel="noopener" class="social-icon" aria-label="GitHub">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+        </a>
+        <a href="https://www.linkedin.com/company/mccarthylabs/" target="_blank" rel="noopener" class="social-icon" aria-label="LinkedIn">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        </a>
+        <a href="https://tryhackme.com/p/mccarthylabs" target="_blank" rel="noopener" class="social-icon" aria-label="TryHackMe" style="font-size:0.7rem;font-weight:700;font-family:var(--font-head);color:var(--text-3);">THM</a>
+      </div>
+      <p class="footer-copy">© 2025 McCarthyLabs · Ian McCarthy · mccarthylabs.ie · Built with purpose.</p>
+    </div>
+  </div>
+</footer>
+
+<button class="scroll-top" id="scrollTop" aria-label="Back to top">↑</button>
+
+<script>
+  // Nav toggle
+  const toggle = document.getElementById('navToggle');
+  const navLinks = document.getElementById('navLinks');
+  toggle.addEventListener('click', () => navLinks.classList.toggle('open'));
+
+  // Scroll top
+  const scrollBtn = document.getElementById('scrollTop');
+  window.addEventListener('scroll', () => {
+    scrollBtn.classList.toggle('visible', window.scrollY > 400);
+  });
+  scrollBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+</script>
 </body>
 </html>

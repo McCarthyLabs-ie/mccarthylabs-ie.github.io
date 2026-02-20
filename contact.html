@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact | McCarthyLabs</title>
+  <meta name="description" content="Get in touch with Ian McCarthy — open to internships, junior cybersecurity roles, and conversations about security." />
+  <link rel="canonical" href="https://mccarthylabs.ie/contact.html" />
+  <link rel="icon" href="assets/logo.png" type="image/png" />
+  <link rel="stylesheet" href="assets/style.css" />
+  <style>
+    .form-group { display:flex; flex-direction:column; gap:0.4rem; }
+    .form-group label { font-size:0.85rem; color:var(--text-2); font-family:var(--font-head); letter-spacing:0.05em; }
+    .form-group input, .form-group textarea, .form-group select {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 0.75rem 1rem;
+      color: var(--text-1);
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      transition: border-color var(--transition);
+      width: 100%;
+    }
+    .form-group input:focus, .form-group textarea:focus, .form-group select:focus {
+      outline: none;
+      border-color: var(--blue-light);
+      box-shadow: 0 0 0 3px #2563eb22;
+    }
+    .form-group textarea { min-height: 140px; resize: vertical; }
+    .form-group select option { background: var(--bg-card); }
+    .form-success { display:none; background:var(--bg-card); border:1px solid #34d399; border-radius:var(--radius-lg); padding:2rem; text-align:center; }
+    .form-success.visible { display:block; }
+    /* honeypot */
+    .hp-field { position:absolute; left:-9999px; }
+  </style>
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <img src="assets/logo.png" alt="McCarthyLabs Logo" />
+      <span class="nav-logo-text">Mc<span>CARTHY</span>LABS</span>
+    </a>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">☰</button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="ctf.html">CTF</a></li>
+      <li><a href="contact.html" class="active nav-cta">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main>
+  <section class="page-hero">
+    <div class="container">
+      <span class="eyebrow fade-up">// Let's Talk</span>
+      <h1 class="fade-up-1">Get In Touch</h1>
+      <p class="fade-up-2" style="max-width:540px;font-size:1.05rem;margin-top:0.75rem;">
+        Open to internships, junior roles, and conversations about cybersecurity, Medtech, or process-driven security thinking.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="grid-2" style="gap:4rem;align-items:start;">
+
+        <!-- LEFT: Form -->
+        <div>
+          <div id="formSuccess" class="form-success">
+            <div style="font-size:2rem;margin-bottom:0.75rem;">✅</div>
+            <h3 style="color:#34d399;">Message sent!</h3>
+            <p style="margin:0.5rem 0 0;">Thanks for reaching out. I'll get back to you as soon as I can.</p>
+          </div>
+
+          <form id="contactForm" style="display:flex;flex-direction:column;gap:1.25rem;" action="https://formspree.io/f/mccarthyiann@gmail.com" method="POST">
+            <!-- Honeypot -->
+            <div class="hp-field" aria-hidden="true">
+              <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" />
+            </div>
+            <input type="hidden" name="_subject" value="New message from mccarthylabs.ie" />
+
+            <div class="grid-2" style="gap:1rem;">
+              <div class="form-group">
+                <label for="name">Your Name *</label>
+                <input type="text" id="name" name="name" required placeholder="Jane Smith" />
+              </div>
+              <div class="form-group">
+                <label for="email">Email Address *</label>
+                <input type="email" id="email" name="email" required placeholder="jane@company.com" />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="subject">Subject *</label>
+              <select id="subject" name="subject" required>
+                <option value="" disabled selected>Select a topic...</option>
+                <option value="Internship Enquiry">Internship Enquiry</option>
+                <option value="Junior Role Opportunity">Junior Role Opportunity</option>
+                <option value="Collaboration">Collaboration / Project</option>
+                <option value="Medtech Security">Medtech / Healthcare Security</option>
+                <option value="General">General Message</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="message">Message *</label>
+              <textarea id="message" name="message" required placeholder="Tell me about the opportunity, your organisation, or just say hello..."></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary" id="submitBtn" style="width:fit-content;">
+              Send Message →
+            </button>
+            <p id="formError" style="color:#f87171;font-size:0.85rem;display:none;">Something went wrong. Please email me directly at mccarthyiann@gmail.com</p>
+          </form>
+        </div>
+
+        <!-- RIGHT: Info -->
+        <div style="display:flex;flex-direction:column;gap:1.5rem;">
+          <div class="card">
+            <h4 style="color:var(--cyan);font-family:var(--font-head);letter-spacing:0.05em;margin-bottom:1rem;">// Direct Contact</h4>
+            <div style="display:flex;flex-direction:column;gap:0.75rem;">
+              <a href="mailto:mccarthyiann@gmail.com" style="display:flex;align-items:center;gap:0.75rem;color:var(--text-1);font-size:0.92rem;">
+                <span style="width:32px;height:32px;background:var(--bg-2);border:1px solid var(--border);border-radius:8px;display:flex;align-items:center;justify-content:center;">✉️</span>
+                mccarthyiann@gmail.com
+              </a>
+              <a href="https://www.linkedin.com/company/mccarthylabs/" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:0.75rem;color:var(--text-1);font-size:0.92rem;">
+                <span style="width:32px;height:32px;background:var(--bg-2);border:1px solid var(--border);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:0.75rem;font-weight:700;font-family:var(--font-head);">in</span>
+                linkedin.com/company/mccarthylabs
+              </a>
+              <a href="https://github.com/mccarthylabs-ie" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:0.75rem;color:var(--text-1);font-size:0.92rem;">
+                <span style="width:32px;height:32px;background:var(--bg-2);border:1px solid var(--border);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:0.75rem;font-weight:700;">GH</span>
+                github.com/mccarthylabs-ie
+              </a>
+              <a href="https://tryhackme.com/p/mccarthylabs" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:0.75rem;color:var(--text-1);font-size:0.92rem;">
+                <span style="width:32px;height:32px;background:var(--bg-2);border:1px solid var(--border);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:0.6rem;font-weight:700;font-family:var(--font-head);">THM</span>
+                tryhackme.com/p/mccarthylabs
+              </a>
+            </div>
+          </div>
+
+          <div class="card">
+            <h4 style="color:var(--blue-light);font-family:var(--font-head);letter-spacing:0.05em;margin-bottom:1rem;">// I'm Open To</h4>
+            <div style="display:flex;flex-direction:column;gap:0.5rem;">
+              <div style="display:flex;align-items:center;gap:0.5rem;font-size:0.9rem;color:var(--text-2);">
+                <span style="color:#34d399;">✓</span> Cybersecurity internships
+              </div>
+              <div style="display:flex;align-items:center;gap:0.5rem;font-size:0.9rem;color:var(--text-2);">
+                <span style="color:#34d399;">✓</span> Junior security analyst roles
+              </div>
+              <div style="display:flex;align-items:center;gap:0.5rem;font-size:0.9rem;color:var(--text-2);">
+                <span style="color:#34d399;">✓</span> GRC / compliance positions
+              </div>
+              <div style="display:flex;align-items:center;gap:0.5rem;font-size:0.9rem;color:var(--text-2);">
+                <span style="color:#34d399;">✓</span> Medtech / Healthcare security
+              </div>
+              <div style="display:flex;align-items:center;gap:0.5rem;font-size:0.9rem;color:var(--text-2);">
+                <span style="color:#34d399;">✓</span> Collaboration & networking
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <h4 style="color:var(--text-3);font-family:var(--font-head);letter-spacing:0.05em;margin-bottom:0.75rem;">// Response Time</h4>
+            <p style="font-size:0.88rem;margin:0;">I typically respond within 24-48 hours. For urgent enquiries, email directly.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-logo"><img src="assets/logo.png" alt="McCarthyLabs" /> McCARTHYLABS</div>
+      <ul class="footer-links">
+        <li><a href="index.html">Home</a></li><li><a href="about.html">About</a></li><li><a href="projects.html">Projects</a></li><li><a href="blog.html">Blog</a></li><li><a href="ctf.html">CTF</a></li><li><a href="contact.html">Contact</a></li>
+      </ul>
+      <p class="footer-copy">© 2025 McCarthyLabs · Ian McCarthy</p>
+    </div>
+  </div>
+</footer>
+<button class="scroll-top" id="scrollTop" aria-label="Back to top">↑</button>
+
+<script>
+  document.getElementById('navToggle').addEventListener('click', () => document.getElementById('navLinks').classList.toggle('open'));
+  const s = document.getElementById('scrollTop');
+  window.addEventListener('scroll', () => s.classList.toggle('visible', window.scrollY > 400));
+  s.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+  // Form submission via Formspree
+  const form = document.getElementById('contactForm');
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const btn = document.getElementById('submitBtn');
+    btn.textContent = 'Sending...';
+    btn.disabled = true;
+
+    try {
+      const res = await fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      });
+      if (res.ok) {
+        form.style.display = 'none';
+        document.getElementById('formSuccess').classList.add('visible');
+      } else {
+        throw new Error();
+      }
+    } catch {
+      btn.textContent = 'Send Message →';
+      btn.disabled = false;
+      document.getElementById('formError').style.display = 'block';
+    }
+  });
+</script>
+</body>
+</html>

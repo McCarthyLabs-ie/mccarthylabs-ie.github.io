@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Projects | McCarthyLabs</title>
+  <meta name="description" content="Cybersecurity and technical projects by Ian McCarthy — home labs, security tools, forensics case studies, and more." />
+  <link rel="canonical" href="https://mccarthylabs.ie/projects.html" />
+  <link rel="icon" href="assets/logo.png" type="image/png" />
+  <link rel="stylesheet" href="assets/style.css" />
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <img src="assets/logo.png" alt="McCarthyLabs Logo" />
+      <span class="nav-logo-text">Mc<span>CARTHY</span>LABS</span>
+    </a>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">☰</button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="projects.html" class="active">Projects</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="ctf.html">CTF</a></li>
+      <li><a href="contact.html" class="nav-cta">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main>
+  <section class="page-hero">
+    <div class="container">
+      <span class="eyebrow fade-up">// Portfolio</span>
+      <h1 class="fade-up-1">Projects</h1>
+      <p class="fade-up-2" style="max-width:580px;font-size:1.05rem;margin-top:0.75rem;">
+        A growing collection of cybersecurity projects, lab environments, and technical experiments — built during my BSc and beyond. Updated regularly as I learn.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+
+      <!-- Filter bar -->
+      <div class="flex flex-wrap gap-1" style="margin-bottom:2.5rem;" id="filterBar">
+        <button class="btn btn-sm btn-primary filter-btn active" data-filter="all">All</button>
+        <button class="btn btn-sm btn-outline filter-btn" data-filter="network">Network</button>
+        <button class="btn btn-sm btn-outline filter-btn" data-filter="forensics">Forensics</button>
+        <button class="btn btn-sm btn-outline filter-btn" data-filter="tools">Tools</button>
+        <button class="btn btn-sm btn-outline filter-btn" data-filter="research">Research</button>
+      </div>
+
+      <div class="grid-3" id="projectGrid">
+
+        <div class="card project-card" data-category="network">
+          <div class="flex items-center gap-2" style="margin-bottom:1rem;">
+            <span class="badge badge-cyan">In Progress</span>
+            <span class="badge badge-blue">Network</span>
+          </div>
+          <h3>Home Security Lab</h3>
+          <p style="font-size:0.9rem;margin-top:0.5rem;">A virtualised network security lab built with VirtualBox — Kali Linux attacker machine, pfSense firewall, and intentionally vulnerable VMs (Metasploitable, DVWA) for safe hands-on practice.</p>
+          <div class="flex flex-wrap gap-1" style="margin:1rem 0;">
+            <span class="badge badge-blue">Kali Linux</span>
+            <span class="badge badge-blue">pfSense</span>
+            <span class="badge badge-blue">VirtualBox</span>
+            <span class="badge badge-blue">Metasploitable</span>
+          </div>
+          <a href="https://github.com/mccarthylabs-ie" target="_blank" rel="noopener" class="btn btn-outline btn-sm">GitHub →</a>
+        </div>
+
+        <div class="card project-card" data-category="forensics">
+          <div class="flex items-center gap-2" style="margin-bottom:1rem;">
+            <span class="badge badge-amber">Planning</span>
+            <span class="badge badge-cyan">Forensics</span>
+          </div>
+          <h3>Digital Forensics Case Studies</h3>
+          <p style="font-size:0.9rem;margin-top:0.5rem;">Documented forensic investigations from BSc coursework. Working through evidence acquisition, file system analysis, memory forensics, and reporting using industry-standard tools.</p>
+          <div class="flex flex-wrap gap-1" style="margin:1rem 0;">
+            <span class="badge badge-cyan">Autopsy</span>
+            <span class="badge badge-cyan">FTK Imager</span>
+            <span class="badge badge-cyan">Volatility</span>
+          </div>
+          <span class="btn btn-outline btn-sm" style="opacity:0.5;cursor:default;">Coming Soon</span>
+        </div>
+
+        <div class="card project-card" data-category="network">
+          <div class="flex items-center gap-2" style="margin-bottom:1rem;">
+            <span class="badge badge-amber">Planning</span>
+            <span class="badge badge-blue">Network</span>
+          </div>
+          <h3>Network Traffic Analyser</h3>
+          <p style="font-size:0.9rem;margin-top:0.5rem;">A Python-based tool to capture and analyse network traffic patterns, detect anomalies, and log suspicious activity. Inspired by my Wireshark work during coursework labs.</p>
+          <div class="flex flex-wrap gap-1" style="margin:1rem 0;">
+            <span class="badge badge-blue">Python</span>
+            <span class="badge badge-blue">Scapy</span>
+            <span class="badge badge-blue">Wireshark</span>
+          </div>
+          <span class="btn btn-outline btn-sm" style="opacity:0.5;cursor:default;">Coming Soon</span>
+        </div>
+
+        <div class="card project-card" data-category="research">
+          <div class="flex items-center gap-2" style="margin-bottom:1rem;">
+            <span class="badge badge-green">Completed</span>
+            <span class="badge badge-blue">Research</span>
+          </div>
+          <h3>Medtech → Cybersecurity: A Skills Transfer Analysis</h3>
+          <p style="font-size:0.9rem;margin-top:0.5rem;">A personal research piece mapping direct competency transfers from regulated Medtech environments (ISO 13485, FDA 21 CFR Part 820) to cybersecurity frameworks like NIST CSF and ISO 27001.</p>
+          <div class="flex flex-wrap gap-1" style="margin:1rem 0;">
+            <span class="badge badge-blue">NIST CSF</span>
+            <span class="badge badge-blue">ISO 27001</span>
+            <span class="badge badge-blue">Risk Management</span>
+          </div>
+          <a href="blog/from-medtech-to-cybersecurity.html" class="btn btn-outline btn-sm">Read Post →</a>
+        </div>
+
+        <div class="card project-card" data-category="tools">
+          <div class="flex items-center gap-2" style="margin-bottom:1rem;">
+            <span class="badge badge-amber">Coming Soon</span>
+            <span class="badge badge-cyan">Tools</span>
+          </div>
+          <h3>Security Checklist Generator</h3>
+          <p style="font-size:0.9rem;margin-top:0.5rem;">A web-based tool that generates compliance and security checklists based on selected frameworks (NIST, CIS, ISO). Inspired by quality checklists from my Medtech background.</p>
+          <div class="flex flex-wrap gap-1" style="margin:1rem 0;">
+            <span class="badge badge-cyan">JavaScript</span>
+            <span class="badge badge-cyan">HTML/CSS</span>
+          </div>
+          <span class="btn btn-outline btn-sm" style="opacity:0.5;cursor:default;">Coming Soon</span>
+        </div>
+
+        <div class="card project-card" style="border-style:dashed;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;" data-category="all">
+          <div style="font-size:2.5rem;margin-bottom:1rem;">🚧</div>
+          <h3 style="color:var(--text-2);">More Building...</h3>
+          <p style="font-size:0.9rem;">New projects are added as my BSc progresses. Check back regularly or follow on GitHub.</p>
+          <a href="https://github.com/mccarthylabs-ie" target="_blank" rel="noopener" class="btn btn-outline btn-sm" style="margin-top:1rem;">Follow on GitHub</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-logo"><img src="assets/logo.png" alt="McCarthyLabs" /> McCARTHYLABS</div>
+      <ul class="footer-links">
+        <li><a href="index.html">Home</a></li><li><a href="about.html">About</a></li><li><a href="projects.html">Projects</a></li><li><a href="blog.html">Blog</a></li><li><a href="ctf.html">CTF</a></li><li><a href="contact.html">Contact</a></li>
+      </ul>
+      <p class="footer-copy">© 2025 McCarthyLabs · Ian McCarthy</p>
+    </div>
+  </div>
+</footer>
+
+<button class="scroll-top" id="scrollTop" aria-label="Back to top">↑</button>
+
+<script>
+  document.getElementById('navToggle').addEventListener('click', () => document.getElementById('navLinks').classList.toggle('open'));
+  const scrollBtn = document.getElementById('scrollTop');
+  window.addEventListener('scroll', () => scrollBtn.classList.toggle('visible', window.scrollY > 400));
+  scrollBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+  // Filter
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.filter-btn').forEach(b => { b.classList.remove('active','btn-primary'); b.classList.add('btn-outline'); });
+      btn.classList.add('active','btn-primary'); btn.classList.remove('btn-outline');
+      const filter = btn.dataset.filter;
+      document.querySelectorAll('.project-card').forEach(card => {
+        card.style.display = (filter === 'all' || card.dataset.category === filter) ? '' : 'none';
+      });
+    });
+  });
+</script>
+</body>
+</html>

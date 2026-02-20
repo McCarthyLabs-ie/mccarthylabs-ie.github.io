@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blog | McCarthyLabs</title>
+  <meta name="description" content="Security write-ups, research articles, and career insights from Ian McCarthy — BSc Cybersecurity student, Ireland." />
+  <link rel="canonical" href="https://mccarthylabs.ie/blog.html" />
+  <link rel="icon" href="assets/logo.png" type="image/png" />
+  <link rel="stylesheet" href="assets/style.css" />
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <img src="assets/logo.png" alt="McCarthyLabs Logo" />
+      <span class="nav-logo-text">Mc<span>CARTHY</span>LABS</span>
+    </a>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">☰</button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="blog.html" class="active">Blog</a></li>
+      <li><a href="ctf.html">CTF</a></li>
+      <li><a href="contact.html" class="nav-cta">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main>
+  <section class="page-hero">
+    <div class="container">
+      <span class="eyebrow fade-up">// Writing</span>
+      <h1 class="fade-up-1">Blog</h1>
+      <p class="fade-up-2" style="max-width:580px;font-size:1.05rem;margin-top:0.75rem;">Research, reflections, and write-ups from my transition into cybersecurity — as honest and detailed as I can make them.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container" style="max-width:800px;">
+
+      <!-- Post 1 -->
+      <a href="blog/from-medtech-to-cybersecurity.html" style="text-decoration:none;display:block;margin-bottom:1.5rem;">
+        <div class="card" style="display:flex;gap:2rem;align-items:flex-start;flex-wrap:wrap;">
+          <div style="flex:1;min-width:200px;">
+            <div class="flex flex-wrap gap-1" style="margin-bottom:0.75rem;">
+              <span class="badge badge-cyan">Career</span>
+              <span class="badge badge-blue">Opinion</span>
+            </div>
+            <h3 style="color:var(--text-1);margin-bottom:0.5rem;">From Medtech to Cybersecurity — Why I Made the Switch</h3>
+            <p style="font-size:0.92rem;">After years ensuring quality in life-critical medical devices at Stryker, I realised the skills I'd built — risk assessment, compliance, systematic investigation — translate directly into information security. Here's the full story of why I'm making the leap.</p>
+            <div style="display:flex;align-items:center;gap:1.25rem;margin-top:1rem;font-size:0.82rem;color:var(--text-3);">
+              <span>📅 February 2025</span>
+              <span>⏱ 5 min read</span>
+              <span style="color:var(--blue-light);">Read more →</span>
+            </div>
+          </div>
+        </div>
+      </a>
+
+      <!-- Coming soon placeholder -->
+      <div class="card" style="text-align:center;border-style:dashed;padding:3rem;">
+        <div style="font-size:2.5rem;margin-bottom:1rem;">✍️</div>
+        <h3 style="color:var(--text-2);">More posts coming soon</h3>
+        <p style="font-size:0.9rem;max-width:400px;margin:0.5rem auto 0;">As my BSc gets underway in September 2025, I'll be publishing CTF write-ups, lab walkthroughs, security research, and reflections on learning cybersecurity as a career-changer.</p>
+      </div>
+
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-logo"><img src="assets/logo.png" alt="McCarthyLabs" /> McCARTHYLABS</div>
+      <ul class="footer-links">
+        <li><a href="index.html">Home</a></li><li><a href="about.html">About</a></li><li><a href="projects.html">Projects</a></li><li><a href="blog.html">Blog</a></li><li><a href="ctf.html">CTF</a></li><li><a href="contact.html">Contact</a></li>
+      </ul>
+      <p class="footer-copy">© 2025 McCarthyLabs · Ian McCarthy</p>
+    </div>
+  </div>
+</footer>
+<button class="scroll-top" id="scrollTop" aria-label="Back to top">↑</button>
+<script>
+  document.getElementById('navToggle').addEventListener('click', () => document.getElementById('navLinks').classList.toggle('open'));
+  const s = document.getElementById('scrollTop');
+  window.addEventListener('scroll', () => s.classList.toggle('visible', window.scrollY > 400));
+  s.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+</script>
+</body>
+</html>

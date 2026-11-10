@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Risk Quantification — Turning Threats into Numbers | McCarthyLabs</title>
+  <meta name="description" content="A GRC case study by Ian McCarthy — a qualitative and quantitative (SLE/ARO/ALE) information-security risk assessment showing why identity infrastructure, not the core database, carried the highest annualised loss exposure." />
+  <meta property="og:title" content="Risk Quantification — Turning Threats into Numbers | McCarthyLabs" />
+  <meta property="og:description" content="A GRC case study by Ian McCarthy — a qualitative and quantitative (SLE/ARO/ALE) information-security risk assessment showing why identity infrastructure, not the core database, carried the highest annualised loss exposure." />
+  <meta property="og:url" content="https://mccarthylabs.ie/projects/grc-risk-quantification.html" />
+  <meta property="og:type" content="website" />
+  <link rel="canonical" href="https://mccarthylabs.ie/projects/grc-risk-quantification.html" />
+  <link rel="icon" href="../assets/logo.png" type="image/png" />
+  <link rel="stylesheet" href="../assets/style.css" />
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="../index.html" class="nav-logo">
+      <img src="../assets/logo.png" alt="McCarthyLabs Logo" />
+      <span class="nav-logo-text">Mc<span>CARTHY</span>LABS</span>
+    </a>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">☰</button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="../about.html">About</a></li>
+      <li><a href="../projects.html">Projects</a></li>
+      <li><a href="../labs.html">Labs</a></li>
+      <li><a href="../blog.html">Blog</a></li>
+      <li><a href="../ctf.html">CTF</a></li>
+      <li><a href="../contact.html" class="nav-cta">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main>
+  <section class="page-hero">
+    <div class="container">
+      <span class="eyebrow fade-up">// Case Study · BSc Standards, Risk &amp; Compliance</span>
+      <h1 class="fade-up-1" style="max-width:860px;">Risk Quantification: Turning Threats into Numbers</h1>
+      <p class="fade-up-2" style="max-width:720px;font-size:1.05rem;margin-top:0.75rem;">Qualitative risk tells you something feels dangerous. Quantitative risk tells you how much it costs you per year — and sometimes the two disagree. This assessment is where my Quality background and GRC meet.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container" style="max-width:820px;">
+      <div class="card" style="margin:0 0 2rem;"><div class="glance"><div><span>Programme</span>BSc · Cybersecurity Standards, Risk &amp; Compliance</div><div><span>Scenario</span>A fictional mid-sized credit union</div><div><span>Method</span>Qualitative + quantitative (SLE/ARO/ALE)</div><div><span>Standards</span>NIST SP 800-30 · ISO/IEC 27005</div></div></div>
+      <div class="prose" style="max-width:none;">
+
+        <h2>The brief</h2>
+        <p>Assess the information-security risk to a fictional mid-sized credit union — roughly 10,000 members, a head office and several branches — across its three most critical systems: the core banking database, the Active Directory that authenticates everyone, and the member CRM. The goal wasn't just to rank them "high / medium / low"; it was to put a defensible annual figure on each, so the organisation could spend its next euro where it actually reduces the most risk.</p>
+
+        <h2>Two lenses on the same risk</h2>
+        <p>I assessed each asset twice. The <strong>qualitative</strong> pass rates impact on confidentiality, integrity and availability and the likelihood of compromise on a descriptive scale — the view that communicates well to a board. The <strong>quantitative</strong> pass converts that judgement into money using the standard model:</p>
+        <blockquote><strong>SLE × ARO = ALE</strong> — Single Loss Expectancy (the cost of one incident) multiplied by the Annual Rate of Occurrence (how many times a year you'd expect it) gives the Annual Loss Expectancy, a per-year exposure you can compare across very different assets.</blockquote>
+
+        <h2>The numbers</h2>
+        <div class="table-wrap">
+          <table class="data-table">
+            <thead><tr><th>Asset</th><th>Qualitative risk</th><th>SLE</th><th>ARO</th><th>ALE (per year)</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Core Banking Database</strong><br><span class="text-muted" style="font-size:0.85em;">member balances, transactions, audit trail</span></td><td>Very high</td><td class="mono">€750,000</td><td class="mono">0.15</td><td><strong>€112,500</strong></td></tr>
+              <tr><td><strong>AD Domain Credentials</strong><br><span class="text-muted" style="font-size:0.85em;">authentication across every system</span></td><td>High – very high</td><td class="mono">€500,000</td><td class="mono">0.30</td><td><strong>€150,000</strong></td></tr>
+              <tr><td><strong>Core CRM Application</strong><br><span class="text-muted" style="font-size:0.85em;">member contact &amp; service history</span></td><td>Medium – high</td><td class="mono">€200,000</td><td class="mono">0.20</td><td><strong>€40,000</strong></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2>The finding: impact and risk aren't the same thing</h2>
+        <p>Qualitatively, the <strong>core banking database</strong> is the scariest asset — compromise it and you've hit confidentiality, integrity and availability at once, with immediate regulatory exposure. By impact alone, it's the clear number one.</p>
+        <p>But annualised exposure tells a different story. <strong>Active Directory credentials carry the highest ALE — €150,000 a year — even though a single breach costs less than the banking database.</strong> Why? Because credential-based attacks (phishing, password spraying, pass-the-hash) are so much more <em>likely</em>: an ARO of 0.30 against the database's 0.15. Frequency, not worst-case severity, drives the yearly cost.</p>
+        <div class="bar-chart">
+          <div class="bar-row"><span class="label">AD Domain Credentials</span><span class="track"><span class="fill" style="width:100%"></span></span><span class="value">€150k</span></div>
+          <div class="bar-row"><span class="label">Core Banking Database</span><span class="track"><span class="fill" style="width:75%"></span></span><span class="value">€112.5k</span></div>
+          <div class="bar-row"><span class="label">Core CRM Application</span><span class="track"><span class="fill" style="width:27%"></span></span><span class="value">€40k</span></div>
+        </div>
+        <p>So the spending priority isn't where intuition points. The money goes first to <strong>identity and access management</strong> — MFA, privileged-access controls and AD hardening — because that's where the largest annualised loss sits. The database still needs strong protection; it just isn't where the <em>next</em> euro does the most good.</p>
+
+        <h2>Why this is the GRC skill that matters</h2>
+        <p>Translating a fuzzy sense of danger into a number a decision-maker can act on is the core of governance, risk and compliance — and it's the same discipline I use every day in regulated-manufacturing Quality: quantify the risk, justify the control, and leave an auditable trail behind the decision. A risk register full of "highs" helps no one choose; an ALE ranking tells you exactly what to fund first.</p>
+
+        <h2>Standards referenced</h2>
+        <ul>
+          <li>NIST (2012). <em>Guide for Conducting Risk Assessments</em> — SP 800-30 Rev. 1.</li>
+          <li>ISO/IEC 27005:2018 — <em>Information security risk management.</em></li>
+          <li>Context: GDPR breach-reporting and penalty exposure as an impact driver.</li>
+        </ul>
+      </div>
+      <div class="callout" style="margin-top:2.5rem;"><strong>Academic work.</strong> This write-up summarises coursework submitted for assessment, rewritten for a general audience. The organisation and figures are a fictional teaching scenario; the method and analysis are my own.</div>
+      <div class="page-nav">
+        <a href="../projects.html" class="btn btn-outline btn-sm">← All projects</a>
+        <a href="midnight-blizzard-attack-analysis.html" class="btn btn-outline btn-sm">→ Next case study</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-logo"><img src="../assets/logo.png" alt="McCarthyLabs" /> McCARTHYLABS</div>
+      <ul class="footer-links"><li><a href="../index.html">Home</a></li><li><a href="../about.html">About</a></li><li><a href="../projects.html">Projects</a></li><li><a href="../labs.html">Labs</a></li><li><a href="../blog.html">Blog</a></li><li><a href="../ctf.html">CTF</a></li><li><a href="../contact.html">Contact</a></li></ul>
+      <div class="footer-social">
+        <a href="https://github.com/mccarthylabs-ie" target="_blank" rel="noopener" class="social-icon" aria-label="GitHub"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg></a>
+        <a href="https://www.linkedin.com/company/mccarthylabs/" target="_blank" rel="noopener" class="social-icon" aria-label="LinkedIn"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+      </div>
+      <p class="footer-copy">© 2026 McCarthyLabs · Ian McCarthy · mccarthylabs.ie · Built with purpose.</p>
+    </div>
+  </div>
+</footer>
+
+<button class="scroll-top" id="scrollTop" aria-label="Back to top">↑</button>
+
+<script>
+  document.getElementById('navToggle').addEventListener('click', () => document.getElementById('navLinks').classList.toggle('open'));
+  const scrollBtn = document.getElementById('scrollTop');
+  window.addEventListener('scroll', () => scrollBtn.classList.toggle('visible', window.scrollY > 400));
+  scrollBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+</script>
+</body>
+</html>

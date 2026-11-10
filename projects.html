@@ -4,9 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Projects &amp; Case Studies | McCarthyLabs</title>
-  <meta name="description" content="Cybersecurity and GRC projects by Ian McCarthy — ERP/MES access architecture, MITRE ATT&amp;CK incident analysis, HSE ransomware case study, cloud and risk-quantification work." />
+  <meta name="description" content="Cybersecurity and GRC projects by Ian McCarthy — ERP/MES access architecture, GRC risk quantification, MITRE ATT&amp;CK incident analysis, the HSE ransomware case study, cloud and network work." />
   <meta property="og:title" content="Projects &amp; Case Studies | McCarthyLabs" />
-  <meta property="og:description" content="Cybersecurity and GRC projects by Ian McCarthy — ERP/MES access architecture, MITRE ATT&amp;CK incident analysis, HSE ransomware case study, cloud and risk-quantification work." />
+  <meta property="og:description" content="Cybersecurity and GRC projects by Ian McCarthy — ERP/MES access architecture, GRC risk quantification, MITRE ATT&amp;CK incident analysis, the HSE ransomware case study, cloud and network work." />
   <meta property="og:url" content="https://mccarthylabs.ie/projects.html" />
   <meta property="og:type" content="website" />
   <link rel="canonical" href="https://mccarthylabs.ie/projects.html" />
@@ -39,7 +39,7 @@
     <div class="container">
       <span class="eyebrow fade-up">// Portfolio</span>
       <h1 class="fade-up-1">Projects &amp; Case Studies</h1>
-      <p class="fade-up-2" style="max-width:660px;font-size:1.05rem;margin-top:0.75rem;">Selected work from my BSc and MSc — architecture designs, incident analyses and GRC exercises. The deeper write-ups carry diagrams, data and references; the rest of the hands-on record lives in the <a href="labs.html">Labs notebook</a>.</p>
+      <p class="fade-up-2" style="max-width:660px;font-size:1.05rem;margin-top:0.75rem;">Selected work from my BSc and MSc — architecture designs, a GRC risk assessment and incident analyses. The deeper write-ups carry diagrams, data and references; the rest of the hands-on record lives in the <a href="labs.html">Labs notebook</a>.</p>
     </div>
   </section>
 
@@ -48,27 +48,37 @@
       <span class="eyebrow">// Featured</span>
       <h2 style="margin-bottom:2rem;">Case Studies</h2>
       <div class="grid-3" style="margin-bottom:4rem;">
-        <div class="card project-card card-col" data-category="architecture">
+        <div class="card card-col">
           <div class="flex items-center gap-1" style="margin-bottom:0.85rem;flex-wrap:wrap;"><span class="badge badge-green">Capstone</span><span class="badge badge-blue">Architecture</span></div>
           <div class="card-meta">BSc Capstone Project</div>
           <h3><a href="projects/securing-lan-erp-mes.html">Securing LAN Access to ERP &amp; MES Systems in Regulated Manufacturing</a></h3>
-          <p style="font-size:0.9rem;margin-top:0.6rem;">BSc capstone: a defence-in-depth access-control architecture for the ERP/MES systems that run a regulated medical-device plant.</p>
+          <p style="font-size:0.9rem;margin-top:0.6rem;">A defence-in-depth access-control architecture for the ERP/MES systems that run a regulated medical-device plant — five-zone segmentation, hybrid RBAC/ABAC and OPC UA enforcement under NIST CSF 2.0.</p>
           <div class="card-foot">
-            <div class="tag-row"><span class="badge badge-blue">NIST CSF 2.0</span><span class="badge badge-blue">RBAC/ABAC</span><span class="badge badge-blue">VLAN Segmentation</span><span class="badge badge-blue">OPC UA</span><span class="badge badge-blue">Zero Trust</span></div>
+            <div class="tag-row"><span class="badge badge-blue">NIST CSF 2.0</span><span class="badge badge-blue">RBAC/ABAC</span><span class="badge badge-blue">OPC UA</span><span class="badge badge-blue">ISO 13485</span></div>
             <a href="projects/securing-lan-erp-mes.html" class="btn btn-outline btn-sm" style="margin-top:1rem;">Read case study →</a>
           </div>
         </div>
-        <div class="card project-card card-col" data-category="incident">
+        <div class="card card-col">
+          <div class="flex items-center gap-1" style="margin-bottom:0.85rem;flex-wrap:wrap;"><span class="badge badge-green">GRC</span><span class="badge badge-blue">Risk</span></div>
+          <div class="card-meta">BSc · Standards, Risk &amp; Compliance</div>
+          <h3><a href="projects/grc-risk-quantification.html">Risk Quantification: Turning Threats into Numbers</a></h3>
+          <p style="font-size:0.9rem;margin-top:0.6rem;">A qualitative <em>and</em> quantitative (SLE/ARO/ALE) risk assessment of three core assets — showing why identity infrastructure, not the core database, carried the highest annualised loss exposure.</p>
+          <div class="card-foot">
+            <div class="tag-row"><span class="badge badge-blue">NIST SP 800-30</span><span class="badge badge-blue">ISO 27005</span><span class="badge badge-blue">SLE / ARO / ALE</span></div>
+            <a href="projects/grc-risk-quantification.html" class="btn btn-outline btn-sm" style="margin-top:1rem;">Read case study →</a>
+          </div>
+        </div>
+        <div class="card card-col">
           <div class="flex items-center gap-1" style="margin-bottom:0.85rem;flex-wrap:wrap;"><span class="badge badge-cyan">Incident Response</span><span class="badge badge-blue">Threat Intel</span></div>
           <div class="card-meta">MSc · Advanced Incident Response</div>
           <h3><a href="projects/midnight-blizzard-attack-analysis.html">Midnight Blizzard vs Microsoft (2024): A MITRE ATT&amp;CK Analysis</a></h3>
-          <p style="font-size:0.9rem;margin-top:0.6rem;">MSc incident analysis mapping a nation-state cloud-identity intrusion to 13 ATT&amp;CK techniques — and showing the whole chain lives in three identity log sources.</p>
+          <p style="font-size:0.9rem;margin-top:0.6rem;">Mapping a nation-state cloud-identity intrusion to 13 ATT&amp;CK techniques — and showing the whole chain lives in three identity log sources, with no endpoint touched.</p>
           <div class="card-foot">
-            <div class="tag-row"><span class="badge badge-blue">MITRE ATT&amp;CK</span><span class="badge badge-blue">Entra ID</span><span class="badge badge-blue">OAuth Abuse</span><span class="badge badge-blue">Detection Engineering</span></div>
+            <div class="tag-row"><span class="badge badge-blue">MITRE ATT&amp;CK</span><span class="badge badge-blue">Entra ID</span><span class="badge badge-blue">OAuth Abuse</span><span class="badge badge-blue">Detection</span></div>
             <a href="projects/midnight-blizzard-attack-analysis.html" class="btn btn-outline btn-sm" style="margin-top:1rem;">Read case study →</a>
           </div>
         </div>
-        <div class="card project-card card-col" data-category="incident">
+        <div class="card card-col">
           <div class="flex items-center gap-1" style="margin-bottom:0.85rem;flex-wrap:wrap;"><span class="badge badge-cyan">Case Study</span><span class="badge badge-red">Ransomware</span></div>
           <div class="card-meta">BSc · Network Operating Systems Security</div>
           <h3><a href="projects/hse-ransomware-analysis.html">The 2021 HSE Ransomware Attack: Anatomy of a 44-Day Window</a></h3>
@@ -80,10 +90,11 @@
         </div>
       </div>
 
+      <span class="eyebrow">// More from the coursework</span>
+      <h2 style="margin-bottom:1.5rem;">Other Work</h2>
       <div class="flex flex-wrap gap-1 filter-bar" id="filterBar">
         <button class="btn btn-sm btn-primary filter-btn active" data-filter="all">All</button>
         <button class="btn btn-sm btn-outline filter-btn" data-filter="research">Research</button>
-        <button class="btn btn-sm btn-outline filter-btn" data-filter="grc">GRC</button>
         <button class="btn btn-sm btn-outline filter-btn" data-filter="cloud">Cloud</button>
         <button class="btn btn-sm btn-outline filter-btn" data-filter="network">Network</button>
         <button class="btn btn-sm btn-outline filter-btn" data-filter="infra">Infrastructure</button>
@@ -92,38 +103,38 @@
         <div class="card project-card card-col" data-category="research">
           <div class="flex items-center gap-1" style="margin-bottom:0.85rem;flex-wrap:wrap;"><span class="badge badge-amber">In Progress</span><span class="badge badge-cyan">Research</span></div>
           <h3>MSc Research: Verifying a Medical-Device Line Before Restart</h3>
-          <p style="font-size:0.9rem;margin-top:0.6rem;">Developing a framework to independently verify privileged accounts, vendor-managed equipment and in-process product traceability before an Irish medical-device production line is restarted after a destructive cyber intrusion. Grounded in ISO 13485 and a critical review of eight peer-reviewed sources.</p>
+          <p style="font-size:0.9rem;margin-top:0.6rem;">Developing a framework to independently verify privileged accounts, vendor-managed equipment and in-process product traceability before a regulated medical-device production line is restarted after a destructive intrusion. Grounded in ISO 13485 and a critical review of eight peer-reviewed sources.</p>
           <div class="card-foot"><div class="tag-row"><span class="badge badge-blue">ISO 13485</span><span class="badge badge-blue">ICS/OT Security</span><span class="badge badge-blue">Literature Review</span><span class="badge badge-blue">Research Methods</span></div></div>
-        </div>
-        <div class="card project-card card-col" data-category="grc">
-          <div class="flex items-center gap-1" style="margin-bottom:0.85rem;flex-wrap:wrap;"><span class="badge badge-green">Completed</span><span class="badge badge-cyan">GRC</span></div>
-          <h3>Risk Quantification — Credit Union Scenario</h3>
-          <p style="font-size:0.9rem;margin-top:0.6rem;">Qualitative and quantitative (SLE / ARO / ALE) risk assessment of three core assets for a credit union, showing why identity infrastructure — not the core banking database — carried the highest annualised loss exposure, and prioritising controls accordingly.</p>
-          <div class="card-foot"><div class="tag-row"><span class="badge badge-blue">NIST SP 800-30</span><span class="badge badge-blue">ISO 27005</span><span class="badge badge-blue">Risk Quantification</span></div></div>
         </div>
         <div class="card project-card card-col" data-category="cloud">
           <div class="flex items-center gap-1" style="margin-bottom:0.85rem;flex-wrap:wrap;"><span class="badge badge-green">Completed</span><span class="badge badge-cyan">Cloud</span></div>
           <h3>Cloud Threat Deep-Dive — Identity &amp; Key Management</h3>
-          <p style="font-size:0.9rem;margin-top:0.6rem;">Analysis of the CSA 'insufficient identity, credential, access &amp; key management' threat, mapped to concrete organisational impacts and a remediation programme spanning IAM, secrets management, KMS separation and logging — backed by a hands-on Azure AZ-104 lab series.</p>
+          <p style="font-size:0.9rem;margin-top:0.6rem;">Analysis of the CSA 'insufficient identity, credential, access &amp; key management' threat, mapped to concrete organisational impacts and a remediation programme spanning IAM, secrets management, KMS separation and logging — backed by a hands-on Azure lab series.</p>
           <div class="card-foot"><div class="tag-row"><span class="badge badge-blue">Azure</span><span class="badge badge-blue">CSA Top Threats</span><span class="badge badge-blue">Zero Trust</span><span class="badge badge-blue">IAM</span></div></div>
         </div>
-        <div class="card project-card card-col" data-category="infra">
-          <div class="flex items-center gap-1" style="margin-bottom:0.85rem;flex-wrap:wrap;"><span class="badge badge-green">Completed</span><span class="badge badge-cyan">Infrastructure</span></div>
-          <h3>Business-Continuity Architecture in SQL Server 2022</h3>
-          <p style="font-size:0.9rem;margin-top:0.6rem;">Evaluation of an Always On availability-group design for business continuity — failover behaviour, recovery objectives and the trade-offs between synchronous and asynchronous replication for a resilient data tier.</p>
-          <div class="card-foot"><div class="tag-row"><span class="badge badge-blue">SQL Server 2022</span><span class="badge badge-blue">High Availability</span><span class="badge badge-blue">DR</span></div></div>
+        <div class="card project-card card-col" data-category="network">
+          <div class="flex items-center gap-1" style="margin-bottom:0.85rem;flex-wrap:wrap;"><span class="badge badge-green">Completed</span><span class="badge badge-cyan">Network</span></div>
+          <h3>Multi-Protocol Routing &amp; Redistribution</h3>
+          <p style="font-size:0.9rem;margin-top:0.6rem;">A Cisco Packet Tracer build running RIPv2 and OSPF (area 10) across separate routing domains, with a border router performing RIP ↔ OSPF redistribution so every host reaches every other — plus structured fault-finding on a pre-broken topology.</p>
+          <div class="card-foot"><div class="tag-row"><span class="badge badge-blue">Cisco IOS</span><span class="badge badge-blue">OSPF / RIPv2</span><span class="badge badge-blue">Redistribution</span><span class="badge badge-blue">Packet Tracer</span></div></div>
         </div>
         <div class="card project-card card-col" data-category="network">
           <div class="flex items-center gap-1" style="margin-bottom:0.85rem;flex-wrap:wrap;"><span class="badge badge-green">Completed</span><span class="badge badge-cyan">Network</span></div>
           <h3>Enterprise LAN Hardening — Cisco Lab Builds</h3>
-          <p style="font-size:0.9rem;margin-top:0.6rem;">A series of Packet Tracer builds hardening a multi-site enterprise: AAA, SSH, login-attack protection, site-to-site IPsec VPNs, zone-based firewall and IPS, plus Layer-2 defences (DHCP snooping, Dynamic ARP Inspection, BPDU Guard) against ARP spoofing and VLAN hopping.</p>
+          <p style="font-size:0.9rem;margin-top:0.6rem;">Packet Tracer builds hardening a multi-site enterprise: AAA, SSH, login-attack protection, site-to-site IPsec VPNs, zone-based firewall and IPS, plus Layer-2 defences (DHCP snooping, Dynamic ARP Inspection, BPDU Guard) against ARP spoofing and VLAN hopping.</p>
           <div class="card-foot"><div class="tag-row"><span class="badge badge-blue">Cisco IOS</span><span class="badge badge-blue">IPsec VPN</span><span class="badge badge-blue">ZPF/IPS</span><span class="badge badge-blue">Layer-2 Security</span></div></div>
         </div>
         <div class="card project-card card-col" data-category="infra">
           <div class="flex items-center gap-1" style="margin-bottom:0.85rem;flex-wrap:wrap;"><span class="badge badge-green">Completed</span><span class="badge badge-cyan">Infrastructure</span></div>
-          <h3>PKI &amp; Certificate Services with Windows NDES</h3>
-          <p style="font-size:0.9rem;margin-top:0.6rem;">Stood up a Windows Certificate Authority and used the Network Device Enrolment Service to issue and process user and Cisco router certificates end-to-end — the practical mechanics behind certificate-based authentication.</p>
-          <div class="card-foot"><div class="tag-row"><span class="badge badge-blue">PKI</span><span class="badge badge-blue">Windows Server</span><span class="badge badge-blue">NDES</span><span class="badge badge-blue">x.509</span></div></div>
+          <h3>PKI &amp; Certificate Enrolment</h3>
+          <p style="font-size:0.9rem;margin-top:0.6rem;">Generated certificate requests for Cisco routers and issued and processed them through a certificate authority (SCEP/NDES enrolment), then validated certificate-based authentication end-to-end — the practical mechanics behind removing shared secrets.</p>
+          <div class="card-foot"><div class="tag-row"><span class="badge badge-blue">PKI</span><span class="badge badge-blue">Certificate Authority</span><span class="badge badge-blue">SCEP / NDES</span><span class="badge badge-blue">x.509</span></div></div>
+        </div>
+        <div class="card project-card card-col" data-category="infra">
+          <div class="flex items-center gap-1" style="margin-bottom:0.85rem;flex-wrap:wrap;"><span class="badge badge-green">Completed</span><span class="badge badge-cyan">Infrastructure</span></div>
+          <h3>Database Resilience &amp; Business Continuity</h3>
+          <p style="font-size:0.9rem;margin-top:0.6rem;">Database design and querying, plus an evaluation of high-availability and disaster-recovery options for a resilient data tier — weighing synchronous vs asynchronous replication against recovery objectives and cost.</p>
+          <div class="card-foot"><div class="tag-row"><span class="badge badge-blue">SQL</span><span class="badge badge-blue">High Availability</span><span class="badge badge-blue">DR</span></div></div>
         </div>
       </div>
     </div>
@@ -138,7 +149,6 @@
       <div class="footer-social">
         <a href="https://github.com/mccarthylabs-ie" target="_blank" rel="noopener" class="social-icon" aria-label="GitHub"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg></a>
         <a href="https://www.linkedin.com/company/mccarthylabs/" target="_blank" rel="noopener" class="social-icon" aria-label="LinkedIn"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
-        <a href="https://tryhackme.com/p/mccarthylabs" target="_blank" rel="noopener" class="social-icon" aria-label="TryHackMe" style="font-size:0.7rem;font-weight:700;font-family:var(--font-head);color:var(--text-3);">THM</a>
       </div>
       <p class="footer-copy">© 2026 McCarthyLabs · Ian McCarthy · mccarthylabs.ie · Built with purpose.</p>
     </div>

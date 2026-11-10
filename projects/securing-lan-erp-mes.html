@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Securing ERP &amp; MES Access in Regulated Manufacturing | McCarthyLabs</title>
+  <meta name="description" content="BSc capstone by Ian McCarthy — a defence-in-depth LAN access-control architecture for ERP and MES systems in regulated medical-device manufacturing, using NIST CSF 2.0, VLAN segmentation, hybrid RBAC/ABAC and OPC UA enforcement." />
+  <meta property="og:title" content="Securing ERP &amp; MES Access in Regulated Manufacturing | McCarthyLabs" />
+  <meta property="og:description" content="BSc capstone by Ian McCarthy — a defence-in-depth LAN access-control architecture for ERP and MES systems in regulated medical-device manufacturing, using NIST CSF 2.0, VLAN segmentation, hybrid RBAC/ABAC and OPC UA enforcement." />
+  <meta property="og:url" content="https://mccarthylabs.ie/projects/securing-lan-erp-mes.html" />
+  <meta property="og:type" content="website" />
+  <link rel="canonical" href="https://mccarthylabs.ie/projects/securing-lan-erp-mes.html" />
+  <link rel="icon" href="../assets/logo.png" type="image/png" />
+  <link rel="stylesheet" href="../assets/style.css" />
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="../index.html" class="nav-logo">
+      <img src="../assets/logo.png" alt="McCarthyLabs Logo" />
+      <span class="nav-logo-text">Mc<span>CARTHY</span>LABS</span>
+    </a>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">☰</button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="../about.html">About</a></li>
+      <li><a href="../projects.html">Projects</a></li>
+      <li><a href="../labs.html">Labs</a></li>
+      <li><a href="../blog.html">Blog</a></li>
+      <li><a href="../ctf.html">CTF</a></li>
+      <li><a href="../contact.html" class="nav-cta">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main>
+  <section class="page-hero">
+    <div class="container">
+      <span class="eyebrow fade-up">// Case Study · BSc Capstone</span>
+      <h1 class="fade-up-1" style="max-width:860px;">Securing LAN Access to ERP &amp; MES Systems in Regulated Manufacturing</h1>
+      <p class="fade-up-2" style="max-width:720px;font-size:1.05rem;margin-top:0.75rem;">A defence-in-depth access-control architecture for the systems that run a regulated medical-device plant — built around NIST CSF 2.0, network segmentation and hybrid RBAC/ABAC enforced through OPC UA.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container" style="max-width:820px;">
+      <div class="card" style="margin:0 0 2rem;"><div class="glance"><div><span>Programme</span>BSc Network Cybersecurity · Capstone</div><div><span>Domain</span>OT / ICS · Regulated Manufacturing</div><div><span>Frameworks</span>NIST CSF 2.0 · ISO 13485 · NIS2</div><div><span>Core design</span>5-zone segmentation · RBAC + ABAC · OPC UA</div></div></div>
+      <div class="prose" style="max-width:none;">
+
+        <h2>The problem</h2>
+        <p>In a regulated medical-device plant, the Enterprise Resource Planning (ERP) and Manufacturing Execution Systems (MES) don't just hold business data — they run production, record material traceability and hold the quality records an auditor will ask for. A weakness in LAN access to those systems is simultaneously a cybersecurity risk, an operational-continuity risk and a compliance exposure.</p>
+        <p>My BSc capstone designed a defence-in-depth architecture to control that access: secure enough to resist compromise and insider misuse, but without interfering with production continuity or safe operation. The work was grounded in a critical review of two key papers on access control for smart manufacturing (Leander et al., 2020, 2023), whose central finding shaped the whole design — dynamic manufacturing needs <em>both</em> expressive access policy and lightweight, standards-aligned enforcement, or the policy stays theoretical.</p>
+
+        <h2>Framework</h2>
+        <p>The design is structured around the six functions of the <strong>NIST Cybersecurity Framework 2.0</strong> — Govern, Identify, Protect, Detect, Respond, Recover — chosen because the goal was not just to harden a network but to build a governable security design that also aligns with the direction of the EU NIS2 Directive. A core ICS principle runs through it: safety-critical functions (emergency stops, alarms, safe-state controls) stay logically independent of the central authorisation workflow, so a failure of IT services never compromises safe operation.</p>
+
+        <h2>1 · Segment the network</h2>
+        <p>The LAN is divided into five trust zones so that ordinary office devices never talk directly to sensitive manufacturing systems. Traffic between zones is governed by a deny-by-default firewall / Layer-3 policy: office IT has no direct path to MES application servers, privileged administration must originate from a hardened jump host, and ERP integration is restricted to documented business flows only.</p>
+        <figure class="figure">
+          <img src="../assets/projects/network-segmentation.png" alt="Five-VLAN segmentation design with a deny-by-default firewall between office IT, manufacturing operations, manufacturing application, infrastructure/security services and administrative management zones." />
+          <figcaption>Figure 1 — Five-zone LAN segmentation. Office IT is denied any direct path to ERP/MES; only approved production traffic and jump-host administration cross into the application zone.</figcaption>
+        </figure>
+
+        <h2>2 · Govern with RBAC, enforce with ABAC</h2>
+        <p>Role-Based Access Control is the governance baseline — it maps cleanly onto training records, management approval and segregation of duties, which is what a regulated environment audits against. Three functional roles are defined: <strong>Operations</strong>, <strong>Quality</strong> and <strong>Engineering</strong>, each limited to the functions their work requires (only Quality can release a batch from hold; only Engineering can change process configuration, and only in an approved maintenance state).</p>
+        <p>RBAC alone is too static for a live production line, so Attribute-Based Access Control is layered on top. A user in a valid role can still be denied if the request comes from an unmanaged device, falls outside an approved shift window, or arrives when the equipment or batch is in the wrong operational state. This gives stronger least-privilege without losing the audit clarity of roles.</p>
+        <figure class="figure">
+          <img src="../assets/projects/rbac-abac-decision-flow.png" alt="Access decision flow: identify RBAC role, validate ABAC attributes (device trust, shift/training, MES/OPC UA state), then permit or deny with the decision logged for audit." />
+          <figcaption>Figure 2 — Hybrid RBAC/ABAC decision flow. The role opens the door; the attributes decide whether this request, right now, from this device, is allowed — and every decision is logged.</figcaption>
+        </figure>
+
+        <h2>3 · Enforce at three layers</h2>
+        <p>Enforcement uses the standard Policy Enforcement / Decision / Information / Administration Point (PEP/PDP/PIP/PAP) model, with enforcement points at three layers for defence in depth: the application entry layer for ERP/MES, the <strong>OPC UA</strong> service or gateway (which already supports role-based security and session mapping, per OPC UA Part 18), and the network itself through VLAN and firewall policy. Because OPC UA natively supports RBAC and token-based mechanisms, the design leverages existing protocol capability rather than bespoke enforcement operators would distrust.</p>
+
+        <h2>4 · Prove it holds — feasibility testing</h2>
+        <p>The literature's clearest warning is that access-control designs which are sound on paper fail in deployment on latency, availability or auditability. The testing plan targets exactly those:</p>
+        <ul>
+          <li><strong>Latency</strong> — compare baseline vs secured MES transaction times to confirm authorisation checks don't delay production.</li>
+          <li><strong>Failure modes</strong> — simulate loss of central authentication and policy services; new privileged actions must fail closed while safety functions stay independent and available.</li>
+          <li><strong>Auditability</strong> — verify the design produces inspection-ready evidence: who accessed what, when, from where, under which role, with what result, and with approval linkage on high-impact actions.</li>
+        </ul>
+
+        <h2>Why it matters</h2>
+        <p>Securing ERP/MES access in regulated manufacturing can't be solved by any single control. Network design, identity governance, enforcement architecture and operational testing have to work together — and the whole thing has to be built around industrial priorities: availability, safe operation, controlled change and auditability. That intersection of compliance evidence and security engineering is exactly where my Quality background and my security work meet.</p>
+
+        <h2>Key references</h2>
+        <ul>
+          <li>Leander, B., et al. (2020). <em>Access Control for Smart Manufacturing Systems.</em></li>
+          <li>Leander, B., et al. (2023). <em>Access Control Enforcement Architectures for Dynamic Manufacturing Systems.</em> IEEE ICSA.</li>
+          <li>NIST (2024). <em>The NIST Cybersecurity Framework (CSF) 2.0.</em></li>
+          <li>OPC Foundation. <em>UA Part 18: Role-Based Security.</em></li>
+        </ul>
+      </div>
+      <div class="callout" style="margin-top:2.5rem;"><strong>Academic work.</strong> This write-up summarises coursework submitted for assessment, rewritten for a general audience. It draws only on public sources and the author's own analysis. Identifiers and internal references have been removed.</div>
+      <div class="page-nav">
+        <a href="../projects.html" class="btn btn-outline btn-sm">← All projects</a>
+        <a href="midnight-blizzard-attack-analysis.html" class="btn btn-outline btn-sm">→ Next case study</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-logo"><img src="../assets/logo.png" alt="McCarthyLabs" /> McCARTHYLABS</div>
+      <ul class="footer-links"><li><a href="../index.html">Home</a></li><li><a href="../about.html">About</a></li><li><a href="../projects.html">Projects</a></li><li><a href="../labs.html">Labs</a></li><li><a href="../blog.html">Blog</a></li><li><a href="../ctf.html">CTF</a></li><li><a href="../contact.html">Contact</a></li></ul>
+      <div class="footer-social">
+        <a href="https://github.com/mccarthylabs-ie" target="_blank" rel="noopener" class="social-icon" aria-label="GitHub"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg></a>
+        <a href="https://www.linkedin.com/company/mccarthylabs/" target="_blank" rel="noopener" class="social-icon" aria-label="LinkedIn"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+        <a href="https://tryhackme.com/p/mccarthylabs" target="_blank" rel="noopener" class="social-icon" aria-label="TryHackMe" style="font-size:0.7rem;font-weight:700;font-family:var(--font-head);color:var(--text-3);">THM</a>
+      </div>
+      <p class="footer-copy">© 2026 McCarthyLabs · Ian McCarthy · mccarthylabs.ie · Built with purpose.</p>
+    </div>
+  </div>
+</footer>
+
+<button class="scroll-top" id="scrollTop" aria-label="Back to top">↑</button>
+
+<script>
+  document.getElementById('navToggle').addEventListener('click', () => document.getElementById('navLinks').classList.toggle('open'));
+  const scrollBtn = document.getElementById('scrollTop');
+  window.addEventListener('scroll', () => scrollBtn.classList.toggle('visible', window.scrollY > 400));
+  scrollBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+</script>
+</body>
+</html>

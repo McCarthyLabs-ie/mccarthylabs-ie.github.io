@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Midnight Blizzard vs Microsoft — A MITRE ATT&amp;CK Analysis | McCarthyLabs</title>
+  <meta name="description" content="MSc incident analysis by Ian McCarthy mapping the 2024 Midnight Blizzard / Microsoft cloud-identity intrusion to 13 MITRE ATT&amp;CK techniques, and showing the entire chain resolves to three identity log sources." />
+  <meta property="og:title" content="Midnight Blizzard vs Microsoft — A MITRE ATT&amp;CK Analysis | McCarthyLabs" />
+  <meta property="og:description" content="MSc incident analysis by Ian McCarthy mapping the 2024 Midnight Blizzard / Microsoft cloud-identity intrusion to 13 MITRE ATT&amp;CK techniques, and showing the entire chain resolves to three identity log sources." />
+  <meta property="og:url" content="https://mccarthylabs.ie/projects/midnight-blizzard-attack-analysis.html" />
+  <meta property="og:type" content="website" />
+  <link rel="canonical" href="https://mccarthylabs.ie/projects/midnight-blizzard-attack-analysis.html" />
+  <link rel="icon" href="../assets/logo.png" type="image/png" />
+  <link rel="stylesheet" href="../assets/style.css" />
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="../index.html" class="nav-logo">
+      <img src="../assets/logo.png" alt="McCarthyLabs Logo" />
+      <span class="nav-logo-text">Mc<span>CARTHY</span>LABS</span>
+    </a>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">☰</button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="../about.html">About</a></li>
+      <li><a href="../projects.html">Projects</a></li>
+      <li><a href="../labs.html">Labs</a></li>
+      <li><a href="../blog.html">Blog</a></li>
+      <li><a href="../ctf.html">CTF</a></li>
+      <li><a href="../contact.html" class="nav-cta">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main>
+  <section class="page-hero">
+    <div class="container">
+      <span class="eyebrow fade-up">// Case Study · MSc Advanced Incident Response</span>
+      <h1 class="fade-up-1" style="max-width:860px;">Midnight Blizzard vs Microsoft (2024)</h1>
+      <p class="fade-up-2" style="max-width:720px;font-size:1.05rem;margin-top:0.75rem;">A nation-state actor read Microsoft's leadership mailboxes without touching a single endpoint. Mapping the intrusion to 13 ATT&amp;CK techniques shows why cloud identity, not the person, is the weak point.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container" style="max-width:820px;">
+      <div class="card" style="margin:0 0 2rem;"><div class="glance"><div><span>Programme</span>MSc · Advanced Incident Response</div><div><span>Framework</span>MITRE ATT&amp;CK Enterprise v19.2</div><div><span>Scope</span>13 techniques · 10 tactics</div><div><span>Key insight</span>Whole chain → 3 identity log sources</div></div></div>
+      <div class="prose" style="max-width:none;">
+
+        <h2>The incident in one line</h2>
+        <p>Between late November 2023 and January 2024, the Russian state actor <strong>Midnight Blizzard (APT29)</strong> read the mailboxes of Microsoft's senior leadership, security and legal staff. The way in was not an exploit — it was a password spray against a forgotten legacy test account with no multi-factor authentication. This MSc analysis reconstructs the chain from primary disclosures and maps it to MITRE ATT&amp;CK.</p>
+
+        <h2>How a test account reached the corporate directory</h2>
+        <p>The intrusion crossed a tenant boundary that identity architecture is supposed to hold. A legacy OAuth application in the compromised test tenant held privileged access into the corporate environment. The actor used it to register its own malicious applications and grant them the Exchange Online <span class="mono">full_access_as_app</span> role — access to every mailbox. All of it routed through residential proxies to blend in.</p>
+        <p>The decisive step has nothing to do with MFA. An application authenticates with a secret; no human is ever prompted. That is the core lesson of the whole case: <strong>in cloud identity, the application is often a weaker point than the person.</strong></p>
+
+        <h2>The ATT&amp;CK mapping</h2>
+        <p>The intrusion maps to <strong>13 techniques across 10 tactics</strong>. A representative slice:</p>
+        <div class="table-wrap">
+          <table class="data-table">
+            <thead><tr><th>Technique</th><th>ID</th><th>Tactic</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Password Spraying</strong></td><td class="mono">T1110.003</td><td>Credential Access</td></tr>
+              <tr><td><strong>Valid Accounts: Cloud</strong></td><td class="mono">T1078.004</td><td>Initial Access · Stealth</td></tr>
+              <tr><td><strong>Additional Cloud Credentials</strong></td><td class="mono">T1098.001</td><td>Privilege Escalation</td></tr>
+              <tr><td><strong>Application Access Token</strong></td><td class="mono">T1550.001</td><td>Lateral Movement</td></tr>
+              <tr><td><strong>Cloud Application Integration</strong></td><td class="mono">T1671</td><td>Persistence</td></tr>
+              <tr><td><strong>Additional Cloud Roles</strong></td><td class="mono">T1098.003</td><td>Privilege Escalation</td></tr>
+              <tr><td><strong>Remote Email Collection</strong></td><td class="mono">T1114.002</td><td>Collection</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2>The finding that surprised me</h2>
+        <p>Almost nothing in the chain was new. Of the ten techniques from spray to mail collection, <strong>seven already had APT29 entries in ATT&amp;CK citing 2020–2022 reporting — three of them Microsoft's own publications.</strong> The adversary's playbook had been documented, by the victim, years before the first password was sprayed. Threat intelligence only works as a control when an organisation applies it to itself.</p>
+
+        <h2>No endpoint, three log sources</h2>
+        <p>The intrusion touched no endpoint at all. There was no malware to find, no host to image. Every trace sat in three identity and SaaS log sources: Entra ID sign-in logs, Entra audit logs, and the Microsoft 365 audit log. For a defender, the practical lesson is sharp: <strong>knowing which technique writes to which log matters more than recognising the technique's name.</strong> The rare events — a credential added to a dormant application, an app-role grant, the first sign-in of an application that had never signed in before — are nearly a signature if you're exporting the right logs.</p>
+
+        <h2>Where the chain could have been cut</h2>
+        <p>Public commentary fixed on the missing MFA. MFA on the test account would have stopped <em>this</em> spray, but it was the weakest control to rely on — any other route in would have reopened the same path. The control that fails closed is <strong>privilege</strong>: had the legacy application held no role-granting permission in the corporate tenant, the token abuse would have yielded nothing and the persistence steps could not have followed. The priority recommendations target application identity governance and monitoring, not user MFA alone:</p>
+        <ul>
+          <li>Strip privileged application permissions; flag service principals owned by another tenant and remove ownerless ones.</li>
+          <li>Treat non-production tenants as production for identity — no dormant tenants, no test-tenant apps holding corporate permissions.</li>
+          <li>Scope mailbox access and retire legacy protocols; replace tenant-wide roles with per-mailbox application RBAC.</li>
+          <li>Alert on the rare events — credentials added to existing apps, app-role grants, first sign-in of a dormant application.</li>
+        </ul>
+
+        <h2>Why this one</h2>
+        <p>I chose this incident because the victim is the identity platform most organisations depend on, so its failure modes are widely shared, and because the techniques are ones an analyst meets in any Microsoft 365 investigation. It's the clearest demonstration I found that modern intrusions are won and lost in identity logs — which is exactly where detection engineering has to live.</p>
+      </div>
+      <div class="callout" style="margin-top:2.5rem;"><strong>Academic work.</strong> This write-up summarises coursework submitted for assessment, rewritten for a general audience. It draws only on public sources and the author's own analysis. Identifiers and internal references have been removed.</div>
+      <div class="page-nav">
+        <a href="securing-lan-erp-mes.html" class="btn btn-outline btn-sm">← Previous</a>
+        <a href="hse-ransomware-analysis.html" class="btn btn-outline btn-sm">→ Next case study</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-logo"><img src="../assets/logo.png" alt="McCarthyLabs" /> McCARTHYLABS</div>
+      <ul class="footer-links"><li><a href="../index.html">Home</a></li><li><a href="../about.html">About</a></li><li><a href="../projects.html">Projects</a></li><li><a href="../labs.html">Labs</a></li><li><a href="../blog.html">Blog</a></li><li><a href="../ctf.html">CTF</a></li><li><a href="../contact.html">Contact</a></li></ul>
+      <div class="footer-social">
+        <a href="https://github.com/mccarthylabs-ie" target="_blank" rel="noopener" class="social-icon" aria-label="GitHub"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg></a>
+        <a href="https://www.linkedin.com/company/mccarthylabs/" target="_blank" rel="noopener" class="social-icon" aria-label="LinkedIn"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+        <a href="https://tryhackme.com/p/mccarthylabs" target="_blank" rel="noopener" class="social-icon" aria-label="TryHackMe" style="font-size:0.7rem;font-weight:700;font-family:var(--font-head);color:var(--text-3);">THM</a>
+      </div>
+      <p class="footer-copy">© 2026 McCarthyLabs · Ian McCarthy · mccarthylabs.ie · Built with purpose.</p>
+    </div>
+  </div>
+</footer>
+
+<button class="scroll-top" id="scrollTop" aria-label="Back to top">↑</button>
+
+<script>
+  document.getElementById('navToggle').addEventListener('click', () => document.getElementById('navLinks').classList.toggle('open'));
+  const scrollBtn = document.getElementById('scrollTop');
+  window.addEventListener('scroll', () => scrollBtn.classList.toggle('visible', window.scrollY > 400));
+  scrollBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+</script>
+</body>
+</html>

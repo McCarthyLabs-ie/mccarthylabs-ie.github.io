@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" role="img" aria-label="McCarthyLabs">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1c2230"/><stop offset="1" stop-color="#0d1117"/></linearGradient>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="26"/></filter>
+  </defs>
+  <rect width="1024" height="1024" rx="232" fill="url(#bg)"/>
+  <rect x="4" y="4" width="1016" height="1016" rx="228" fill="none" stroke="#ffffff" stroke-opacity="0.14" stroke-width="8"/>
+  <circle cx="226" cy="212" r="20" fill="#ff5f56"/><circle cx="286" cy="212" r="20" fill="#ffbd2e"/><circle cx="346" cy="212" r="20" fill="#27c93f"/>
+  <path d="M296 392 L466 530 L296 668" fill="none" stroke="#22d3ee" stroke-width="70" stroke-linecap="round" stroke-linejoin="round" opacity="0.6" filter="url(#glow)"/>
+  <path d="M296 392 L466 530 L296 668" fill="none" stroke="#22d3ee" stroke-width="70" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="530" y="628" width="214" height="62" rx="16" fill="#e6edf3"/>
+</svg>

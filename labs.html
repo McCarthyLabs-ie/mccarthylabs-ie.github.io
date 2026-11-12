@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Labs | McCarthyLabs — Ian McCarthy</title>
-  <meta name="description" content="Hands-on cybersecurity labs by Ian McCarthy across incident response, cryptography, penetration testing, networking, cloud and GRC — grouped by module, grounded in real coursework and written defence-first." />
-  <meta property="og:title" content="Labs | McCarthyLabs — Ian McCarthy" />
-  <meta property="og:description" content="Hands-on cybersecurity labs by Ian McCarthy across incident response, cryptography, penetration testing, networking, cloud and GRC — grouped by module, written defence-first." />
+  <title>Labs | McCarthyLabs | Ian McCarthy</title>
+  <meta name="description" content="Hands-on cybersecurity labs by Ian McCarthy across incident response, cryptography, penetration testing, networking, cloud and GRC, grouped by module, grounded in real coursework and written defence-first." />
+  <meta property="og:title" content="Labs | McCarthyLabs | Ian McCarthy" />
+  <meta property="og:description" content="Hands-on cybersecurity labs by Ian McCarthy across incident response, cryptography, penetration testing, networking, cloud and GRC, grouped by module, written defence-first." />
   <meta property="og:url" content="https://mccarthylabs.ie/labs.html" />
   <meta property="og:type" content="website" />
   <link rel="canonical" href="https://mccarthylabs.ie/labs.html" />
@@ -39,7 +39,7 @@
     <div class="container">
       <span class="eyebrow fade-up">// The Notebook</span>
       <h1 class="fade-up-1">Labs</h1>
-      <p class="fade-up-2" style="max-width:700px;font-size:1.05rem;margin-top:0.75rem;">The hands-on record behind the degrees — grouped by module, each entry capturing what was actually built and the control or principle it taught. Offensive exercises were run only against my own authorised equipment on an isolated lab network, and are written here defence-first.</p>
+      <p class="fade-up-2" style="max-width:700px;font-size:1.05rem;margin-top:0.75rem;">The hands-on record behind the degrees, grouped by module, each entry capturing what was actually built and the control or principle it taught. Offensive exercises were run only against my own authorised equipment on an isolated lab network, and are written here defence-first.</p>
       <div class="chip-nav fade-up-3">
         <a href="#incident-response">Advanced Incident Response</a>
         <a href="#modern-cryptography">Modern Cryptography</a>
@@ -71,14 +71,14 @@
             <h2 style="margin-top:0.25rem;">Advanced Incident Response</h2>
           </div>
         </div>
-        <p style="max-width:760px;margin-top:-0.5rem;margin-bottom:1.75rem;">Incident analysis and detection engineering — from mapping a real nation-state intrusion to MITRE ATT&amp;CK, to replaying techniques in a Dockerised Wazuh &amp; Velociraptor lab and reading them back from the defender's side.</p>
+        <p style="max-width:760px;margin-top:-0.5rem;margin-bottom:1.75rem;">Incident analysis and detection engineering, from mapping a real nation-state intrusion to MITRE ATT&amp;CK, to replaying techniques in a Dockerised Wazuh &amp; Velociraptor lab and reading them back from the defender's side.</p>
         <div class="lab-list">
           <div class="card lab-entry card-col">
             <div class="card-meta">Threat intelligence · ATT&amp;CK</div>
             <h3>ATT&amp;CK Mapping of a Nation-State Intrusion</h3>
             <dl>
               <dt>Built</dt><dd>Reconstructed the 2024 Midnight Blizzard / Microsoft intrusion from primary disclosures (MSRC posts, SEC 8-K filings, a CISA directive) and mapped it to 13 techniques across 10 tactics in ATT&amp;CK v19.2, labelling each as <em>stated</em> or <em>inferred</em>.</dd>
-              <dt>Takeaway</dt><dd>A cloud-identity intrusion can touch no endpoint at all — the whole chain resolved to three identity log sources, and almost every technique was already in ATT&amp;CK before the first password was sprayed.</dd>
+              <dt>Takeaway</dt><dd>A cloud-identity intrusion can touch no endpoint at all: the whole chain resolved to three identity log sources, and almost every technique was already in ATT&amp;CK before the first password was sprayed.</dd>
               <dt>Evidence</dt><dd class="wide">Full write-up in <a href="projects/midnight-blizzard-attack-analysis.html">Projects →</a></dd>
               <dt>Tools</dt><dd class="wide"><div class="tag-row" style="margin:0;"><span class="badge badge-blue">MITRE ATT&amp;CK v19</span><span class="badge badge-blue">Entra ID logs</span><span class="badge badge-blue">OAuth / service principals</span></div></dd>
             </dl>
@@ -88,8 +88,8 @@
             <div class="card-meta">Detection engineering · DFIR</div>
             <h3>Detonate &amp; Detect in the DELab (Wazuh + Velociraptor)</h3>
             <dl>
-              <dt>Building</dt><dd>Representing three techniques from the Midnight Blizzard chain inside an isolated Docker lab — a cloud login without MFA modelled as an SSH login with valid stolen credentials — then showing each step from the defender's side in Wazuh alerts and Velociraptor artefacts, and naming what the defender <em>can't</em> see.</dd>
-              <dt>Takeaway</dt><dd>Writing the detection teaches what "normal" looks like far better than reading about the attack — the alert is only as good as the baseline behind it.</dd>
+              <dt>Building</dt><dd>Representing three techniques from the Midnight Blizzard chain inside an isolated Docker lab (a cloud login without MFA modelled as an SSH login with valid stolen credentials), then showing each step from the defender's side in Wazuh alerts and Velociraptor artefacts, and naming what the defender <em>can't</em> see.</dd>
+              <dt>Takeaway</dt><dd>Writing the detection teaches what "normal" looks like far better than reading about the attack: the alert is only as good as the baseline behind it.</dd>
               <dt>Tools</dt><dd class="wide"><div class="tag-row" style="margin:0;"><span class="badge badge-blue">Docker</span><span class="badge badge-blue">Wazuh</span><span class="badge badge-blue">Velociraptor (VQL)</span><span class="badge badge-blue">Atomic Red Team</span></div></dd>
             </dl>
           </div>
@@ -98,7 +98,7 @@
             <h3>Structured IR against NIST Guidance</h3>
             <dl>
               <dt>Built</dt><dd>Worked incident-response exercises against the NIST Cybersecurity Framework 2.0 functions and SP 800-61, and weekly DFIR labs building Wazuh detection rules and Velociraptor hunt queries across an endpoint.</dd>
-              <dt>Takeaway</dt><dd>Recovery guidance is mature; evidence-collection and resource-availability guidance is far thinner — the gap is operational, not conceptual.</dd>
+              <dt>Takeaway</dt><dd>Recovery guidance is mature; evidence-collection and resource-availability guidance is far thinner; the gap is operational, not conceptual.</dd>
               <dt>Tools</dt><dd class="wide"><div class="tag-row" style="margin:0;"><span class="badge badge-blue">NIST CSF 2.0</span><span class="badge badge-blue">NIST SP 800-61</span></div></dd>
             </dl>
           </div>
@@ -120,16 +120,16 @@
             <h3>Breaking Ciphers &amp; the Internals of AES</h3>
             <dl>
               <dt>Built</dt><dd>A theory assessment working through the Vigenère cipher and Kasiski examination, Kerckhoffs's principle, attack models (chosen-plaintext vs chosen-ciphertext), Feistel vs substitution–permutation networks (DES vs AES), block-cipher modes, PKCS#7 padding, and a CBC padding-oracle attack byte-by-byte.</dd>
-              <dt>Takeaway</dt><dd>The cipher is rarely the weak point — mode of operation, IV handling, and padding decide whether a construction is actually safe. A padding oracle turns "is this valid?" into full plaintext recovery.</dd>
+              <dt>Takeaway</dt><dd>The cipher is rarely the weak point: mode of operation, IV handling, and padding decide whether a construction is actually safe. A padding oracle turns "is this valid?" into full plaintext recovery.</dd>
               <dt>Tools</dt><dd class="wide"><div class="tag-row" style="margin:0;"><span class="badge badge-blue">Kasiski examination</span><span class="badge badge-blue">AES (SPN)</span><span class="badge badge-blue">CBC / CTR</span><span class="badge badge-blue">Padding oracle</span></div></dd>
             </dl>
           </div>
           <div class="card lab-entry card-col">
             <div class="flex items-center gap-1" style="margin-bottom:0.5rem;"><span class="badge badge-amber">In progress · due Dec 2026</span></div>
             <div class="card-meta">Applied crypto · benchmarking</div>
-            <h3>CryptoBench — Classical vs Post-Quantum</h3>
+            <h3>CryptoBench: Classical vs Post-Quantum</h3>
             <dl>
-              <dt>Building</dt><dd>A reproducible benchmark measuring the running times of modern primitives in <code class="mono" style="font-size:0.85em;">pyca/cryptography</code>: key establishment (RSA-OAEP, ECDH, X25519, <strong>ML-KEM</strong>), signatures (RSA-PSS, ECDSA, Ed25519, <strong>ML-DSA</strong>) and authenticated encryption (AES-GCM, ChaCha20-Poly1305, AES-GCM-SIV) — reporting median and IQR across two hardware environments.</dd>
+              <dt>Building</dt><dd>A reproducible benchmark measuring the running times of modern primitives in <code class="mono" style="font-size:0.85em;">pyca/cryptography</code>: key establishment (RSA-OAEP, ECDH, X25519, <strong>ML-KEM</strong>), signatures (RSA-PSS, ECDSA, Ed25519, <strong>ML-DSA</strong>) and authenticated encryption (AES-GCM, ChaCha20-Poly1305, AES-GCM-SIV), reporting median and IQR across two hardware environments.</dd>
               <dt>Takeaway</dt><dd>Post-quantum KEMs and signatures are already in the standard toolkit; measuring them next to RSA and elliptic-curve schemes makes the real-world cost of the migration concrete rather than theoretical.</dd>
               <dt>Snippet</dt><dd class="wide"><pre class="code"># Time each run on its own; median + IQR, never the mean
 t0 = time.perf_counter_ns()
@@ -149,13 +149,13 @@ elapsed_ns = time.perf_counter_ns() - t0</pre></dd>
             <h2 style="margin-top:0.25rem;">Penetration Testing</h2>
           </div>
         </div>
-        <p style="max-width:760px;margin-top:-0.5rem;margin-bottom:1.75rem;">Structured web-application security testing against a deliberately-vulnerable PHP lab — every finding recorded with its request, its vulnerable sink, and the secure-coding control that removes it.</p>
+        <p style="max-width:760px;margin-top:-0.5rem;margin-bottom:1.75rem;">Structured web-application security testing against a deliberately-vulnerable PHP lab, every finding recorded with its request, its vulnerable sink, and the secure-coding control that removes it.</p>
         <div class="lab-list">
           <div class="card lab-entry card-col">
             <div class="card-meta">Web app security · defensive</div>
-            <h3>Cross-Site Scripting — 10 Findings, 10 Fixes</h3>
+            <h3>Cross-Site Scripting: 10 Findings, 10 Fixes</h3>
             <dl>
-              <dt>Built</dt><dd>Catalogued ten distinct XSS variants against a lab app — reflected, DOM-based (via <code class="mono" style="font-size:0.85em;">location.hash</code>), POST-based, HTML-comment and attribute breakouts, JavaScript-context injection, and bypasses of case-sensitive denylists, non-recursive filters and a custom <code class="mono" style="font-size:0.85em;">RemoveXSS()</code> sanitiser — documenting the vulnerable sink and correct mitigation for each.</dd>
+              <dt>Built</dt><dd>Catalogued ten distinct XSS variants against a lab app: reflected, DOM-based (via <code class="mono" style="font-size:0.85em;">location.hash</code>), POST-based, HTML-comment and attribute breakouts, JavaScript-context injection, and bypasses of case-sensitive denylists, non-recursive filters and a custom <code class="mono" style="font-size:0.85em;">RemoveXSS()</code> sanitiser, documenting the vulnerable sink and correct mitigation for each.</dd>
               <dt>Takeaway</dt><dd>Denylists and custom sanitisers lose; contextual output encoding wins. Every finding resolved to <code class="mono" style="font-size:0.85em;">htmlspecialchars</code> with <code class="mono" style="font-size:0.85em;">ENT_QUOTES</code>, <code class="mono" style="font-size:0.85em;">json_encode</code> for JS context, or a safe DOM sink such as <code class="mono" style="font-size:0.85em;">textContent</code>.</dd>
               <dt>Snippet</dt><dd class="wide"><pre class="code">// Context-correct output encoding beats every blacklist
 echo htmlspecialchars($input, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
@@ -169,8 +169,8 @@ echo "if (" . json_encode($number) . " &lt; 10) { ... }";</pre></dd>
             <div class="card-meta">Secure coding</div>
             <h3>From Finding to Fix</h3>
             <dl>
-              <dt>Built</dt><dd>Paired every XSS finding with a remediation aimed at the <em>bug class</em>, not the single instance — contextual encoding for output, <code class="mono" style="font-size:0.85em;">filter_input()</code> validation for integers, and an established parser (HTMLPurifier) where raw markup genuinely has to be allowed.</dd>
-              <dt>Takeaway</dt><dd>Most web risk is trust placed in the wrong place — the client, the filename, the input string. The durable fix validates and encodes server-side, every time.</dd>
+              <dt>Built</dt><dd>Paired every XSS finding with a remediation aimed at the <em>bug class</em>, not the single instance: contextual encoding for output, <code class="mono" style="font-size:0.85em;">filter_input()</code> validation for integers, and an established parser (HTMLPurifier) where raw markup genuinely has to be allowed.</dd>
+              <dt>Takeaway</dt><dd>Most web risk is trust placed in the wrong place: the client, the filename, the input string. The durable fix validates and encodes server-side, every time.</dd>
               <dt>Tools</dt><dd class="wide"><div class="tag-row" style="margin:0;"><span class="badge badge-blue">PHP</span><span class="badge badge-blue">HTMLPurifier</span><span class="badge badge-blue">OWASP</span></div></dd>
             </dl>
           </div>
@@ -192,7 +192,7 @@ echo "if (" . json_encode($number) . " &lt; 10) { ... }";</pre></dd>
             <h3>Critical Literature Review</h3>
             <dl>
               <dt>Built</dt><dd>Synthesised eight peer-reviewed and authoritative sources on post-intrusion recovery, PLC/firmware integrity and manufacturing traceability into a critical review, supported by a literature-review matrix and IEEE referencing. Each source was weighed by evidential strength, distinguishing experiment from conceptual model.</dd>
-              <dt>Takeaway</dt><dd>The literature covers parts of the "safe restart" problem well, but no source joins identity assurance, equipment integrity and product traceability into one evaluated decision — that gap is the research opportunity.</dd>
+              <dt>Takeaway</dt><dd>The literature covers parts of the "safe restart" problem well, but no source joins identity assurance, equipment integrity and product traceability into one evaluated decision; that gap is the research opportunity.</dd>
               <dt>Tools</dt><dd class="wide"><div class="tag-row" style="margin:0;"><span class="badge badge-blue">IEEE referencing</span><span class="badge badge-blue">Lit-review matrix</span><span class="badge badge-blue">Critical appraisal</span></div></dd>
             </dl>
           </div>
@@ -200,8 +200,8 @@ echo "if (" . json_encode($number) . " &lt; 10) { ... }";</pre></dd>
             <div class="card-meta">Research design</div>
             <h3>Topic Framing &amp; Research Proposal</h3>
             <dl>
-              <dt>Built</dt><dd>Refined a researchable topic and research questions on independently verifying a regulated medical-device production line before it restarts after a destructive intrusion — then mapped the evidence base and method needed to answer them.</dd>
-              <dt>Takeaway</dt><dd>A good research question is narrow enough to answer and broad enough to matter — refining the scope is most of the work.</dd>
+              <dt>Built</dt><dd>Refined a researchable topic and research questions on independently verifying a regulated medical-device production line before it restarts after a destructive intrusion, then mapped the evidence base and method needed to answer them.</dd>
+              <dt>Takeaway</dt><dd>A good research question is narrow enough to answer and broad enough to matter; refining the scope is most of the work.</dd>
               <dt>Tools</dt><dd class="wide"><div class="tag-row" style="margin:0;"><span class="badge badge-blue">ISO 13485 context</span><span class="badge badge-blue">Structured methodology</span></div></dd>
             </dl>
           </div>
@@ -227,7 +227,7 @@ echo "if (" . json_encode($number) . " &lt; 10) { ... }";</pre></dd>
             <div class="card-meta">Host hardening</div>
             <h3>Linux Firewall Profiles for Home, Travel &amp; Work</h3>
             <dl>
-              <dt>Built</dt><dd>Designed deny-by-default UFW rule sets that change with context — LAN-only sharing at home, and a locked-down travel profile exposing only VPN and HTTPS.</dd>
+              <dt>Built</dt><dd>Designed deny-by-default UFW rule sets that change with context: LAN-only sharing at home, and a locked-down travel profile exposing only VPN and HTTPS.</dd>
               <dt>Takeaway</dt><dd>Attack surface is contextual: the same laptop needs different rules on a home LAN and a hotel network. A misconfigured firewall is exactly what lands a device on Shodan.</dd>
               <dt>Tools</dt><dd class="wide"><div class="tag-row" style="margin:0;"><span class="badge badge-blue">Linux</span><span class="badge badge-blue">UFW / gufw</span></div></dd>
             </dl>
@@ -236,7 +236,7 @@ echo "if (" . json_encode($number) . " &lt; 10) { ... }";</pre></dd>
             <div class="card-meta">Wi-Fi security · defensive</div>
             <h3>Wireless Threat Awareness (Authorised Lab)</h3>
             <dl>
-              <dt>Built</dt><dd>Demonstrated, against my own network, why weak Wi-Fi configurations fail — capturing a handshake and recovering a deliberately weak key — then documented the defences for each weakness.</dd>
+              <dt>Built</dt><dd>Demonstrated, against my own network, why weak Wi-Fi configurations fail (capturing a handshake and recovering a deliberately weak key), then documented the defences for each weakness.</dd>
               <dt>Takeaway</dt><dd>The controls are concrete: WPA3 with 802.11w protected management frames, strong unpredictable keys, monitoring for deauthentication floods, and user wariness of captive portals and "evil-twin" access points.</dd>
               <dt>Tools</dt><dd class="wide"><div class="tag-row" style="margin:0;"><span class="badge badge-blue">Kali Linux</span><span class="badge badge-blue">aircrack-ng suite</span><span class="badge badge-blue">Wireshark</span></div></dd>
             </dl>
@@ -245,7 +245,7 @@ echo "if (" . json_encode($number) . " &lt; 10) { ... }";</pre></dd>
             <div class="card-meta">OSINT · recon</div>
             <h3>Attack-Surface Discovery with Shodan</h3>
             <dl>
-              <dt>Built</dt><dd>Used Shodan search operators to understand how exposed services, banners and open ports make internet-facing devices discoverable — framed as an asset-inventory and attack-surface exercise.</dd>
+              <dt>Built</dt><dd>Used Shodan search operators to understand how exposed services, banners and open ports make internet-facing devices discoverable, framed as an asset-inventory and attack-surface exercise.</dd>
               <dt>Takeaway</dt><dd>You can't defend what you don't know is exposed. Banner and port hygiene is the difference between a private service and an indexed one.</dd>
               <dt>Tools</dt><dd class="wide"><div class="tag-row" style="margin:0;"><span class="badge badge-blue">Shodan</span></div></dd>
             </dl>
@@ -255,7 +255,7 @@ echo "if (" . json_encode($number) . " &lt; 10) { ... }";</pre></dd>
             <h3>DoS Signatures &amp; Traffic Analysis</h3>
             <dl>
               <dt>Built</dt><dd>Captured and filtered traffic to identify a denial-of-service signature by frame type, and practised the everyday diagnostics Wireshark is really for.</dd>
-              <dt>Takeaway</dt><dd>The same capture skills that spot an attack diagnose a slow network, a failing DHCP handshake or unencrypted traffic — packet literacy is foundational.</dd>
+              <dt>Takeaway</dt><dd>The same capture skills that spot an attack diagnose a slow network, a failing DHCP handshake or unencrypted traffic; packet literacy is foundational.</dd>
               <dt>Tools</dt><dd class="wide"><div class="tag-row" style="margin:0;"><span class="badge badge-blue">Wireshark</span><span class="badge badge-blue">tcpdump</span></div></dd>
             </dl>
           </div>
@@ -270,14 +270,14 @@ echo "if (" . json_encode($number) . " &lt; 10) { ... }";</pre></dd>
             <h2 style="margin-top:0.25rem;">LAN Cybersecurity</h2>
           </div>
         </div>
-        <p style="max-width:760px;margin-top:-0.5rem;margin-bottom:1.75rem;">Enterprise network defence in Cisco Packet Tracer — from Layer-2 up to site-to-site VPNs and a working PKI.</p>
+        <p style="max-width:760px;margin-top:-0.5rem;margin-bottom:1.75rem;">Enterprise network defence in Cisco Packet Tracer, from Layer-2 up to site-to-site VPNs and a working PKI.</p>
         <div class="lab-list">
           <div class="card lab-entry card-col">
             <div class="card-meta">Network security · defensive</div>
             <h3>Layer-2 Defence: ARP Spoofing &amp; VLAN Hopping</h3>
             <dl>
               <dt>Built</dt><dd>Researched two foundational LAN attacks and configured the switch-level controls that defeat them: DHCP snooping, Dynamic ARP Inspection, disabled DTP, an unused native VLAN and BPDU Guard.</dd>
-              <dt>Takeaway</dt><dd>Segmentation only works if it's enforced technically, not assumed — a trust boundary you haven't configured on the switch isn't a boundary.</dd>
+              <dt>Takeaway</dt><dd>Segmentation only works if it's enforced technically, not assumed: a trust boundary you haven't configured on the switch isn't a boundary.</dd>
               <dt>Tools</dt><dd class="wide"><div class="tag-row" style="margin:0;"><span class="badge badge-blue">Cisco IOS</span><span class="badge badge-blue">Packet Tracer</span></div></dd>
             </dl>
           </div>
@@ -295,16 +295,16 @@ echo "if (" . json_encode($number) . " &lt; 10) { ... }";</pre></dd>
             <h3>PKI &amp; Certificate Enrolment</h3>
             <dl>
               <dt>Built</dt><dd>Generated certificate requests for routers, issued and processed them through a certificate authority, and validated certificate-based authentication in practice.</dd>
-              <dt>Takeaway</dt><dd>Certificate-based auth removes shared secrets — but it only works if enrolment, trust chains and revocation are managed as carefully as the keys.</dd>
+              <dt>Takeaway</dt><dd>Certificate-based auth removes shared secrets, but it only works if enrolment, trust chains and revocation are managed as carefully as the keys.</dd>
               <dt>Tools</dt><dd class="wide"><div class="tag-row" style="margin:0;"><span class="badge badge-blue">PKI</span><span class="badge badge-blue">Certificate Authority</span></div></dd>
             </dl>
           </div>
           <div class="card lab-entry card-col">
             <div class="card-meta">Applied crypto</div>
-            <h3>Applied Cryptography — AES &amp; RSA in the Wild</h3>
+            <h3>Applied Cryptography: AES &amp; RSA in the Wild</h3>
             <dl>
-              <dt>Built</dt><dd>Traced how everyday systems combine symmetric and asymmetric cryptography — AES for message confidentiality, RSA/ECDHE for authentication and key exchange — and why modern TLS favours forward secrecy.</dd>
-              <dt>Takeaway</dt><dd>Strong crypto comes from correct placement and configuration, not algorithm names — forward secrecy is a deployment choice, not a given.</dd>
+              <dt>Built</dt><dd>Traced how everyday systems combine symmetric and asymmetric cryptography (AES for message confidentiality, RSA/ECDHE for authentication and key exchange), and why modern TLS favours forward secrecy.</dd>
+              <dt>Takeaway</dt><dd>Strong crypto comes from correct placement and configuration, not algorithm names; forward secrecy is a deployment choice, not a given.</dd>
               <dt>Tools</dt><dd class="wide"><div class="tag-row" style="margin:0;"><span class="badge badge-blue">TLS</span><span class="badge badge-blue">AES / RSA</span></div></dd>
             </dl>
           </div>
@@ -319,14 +319,14 @@ echo "if (" . json_encode($number) . " &lt; 10) { ... }";</pre></dd>
             <h2 style="margin-top:0.25rem;">Network Routing &amp; Switching</h2>
           </div>
         </div>
-        <p style="max-width:760px;margin-top:-0.5rem;margin-bottom:1.75rem;">The routing foundation underneath every network-security control — multi-protocol routing, redistribution and structured troubleshooting in Cisco Packet Tracer.</p>
+        <p style="max-width:760px;margin-top:-0.5rem;margin-bottom:1.75rem;">The routing foundation underneath every network-security control: multi-protocol routing, redistribution and structured troubleshooting in Cisco Packet Tracer.</p>
         <div class="lab-list">
           <div class="card lab-entry card-col">
             <div class="card-meta">Routing protocols</div>
             <h3>Multi-Protocol Routing &amp; Redistribution</h3>
             <dl>
               <dt>Built</dt><dd>Built a multi-router topology running RIPv2 on one domain and OSPF (process 1, area 10) on another, with a border router performing RIP ↔ OSPF route redistribution so every host could reach every other.</dd>
-              <dt>Takeaway</dt><dd>Redistribution is where routing designs quietly break — metrics don't translate between protocols, so the boundary router has to be told how to value routes it didn't learn natively.</dd>
+              <dt>Takeaway</dt><dd>Redistribution is where routing designs quietly break: metrics don't translate between protocols, so the boundary router has to be told how to value routes it didn't learn natively.</dd>
               <dt>Tools</dt><dd class="wide"><div class="tag-row" style="margin:0;"><span class="badge badge-blue">Cisco IOS</span><span class="badge badge-blue">RIPv2 / OSPF</span><span class="badge badge-blue">Packet Tracer</span></div></dd>
             </dl>
           </div>
@@ -334,8 +334,8 @@ echo "if (" . json_encode($number) . " &lt; 10) { ... }";</pre></dd>
             <div class="card-meta">Troubleshooting</div>
             <h3>Fault-Finding a Broken Topology</h3>
             <dl>
-              <dt>Built</dt><dd>Worked a pre-broken network back to full connectivity — reasoning from symptoms (failed pings, missing routes) through the OSI layers to the misconfiguration, then verifying the fix end-to-end.</dd>
-              <dt>Takeaway</dt><dd>Methodical, layer-by-layer troubleshooting beats guessing — the same discipline a Quality investigation uses to find a root cause.</dd>
+              <dt>Built</dt><dd>Worked a pre-broken network back to full connectivity, reasoning from symptoms (failed pings, missing routes) through the OSI layers to the misconfiguration, then verifying the fix end-to-end.</dd>
+              <dt>Takeaway</dt><dd>Methodical, layer-by-layer troubleshooting beats guessing, the same discipline a Quality investigation uses to find a root cause.</dd>
               <dt>Tools</dt><dd class="wide"><div class="tag-row" style="margin:0;"><span class="badge badge-blue">Cisco IOS</span><span class="badge badge-blue">show / debug</span></div></dd>
             </dl>
           </div>
@@ -350,14 +350,14 @@ echo "if (" . json_encode($number) . " &lt; 10) { ... }";</pre></dd>
             <h2 style="margin-top:0.25rem;">Cybersecurity Standards, Risk &amp; Compliance</h2>
           </div>
         </div>
-        <p style="max-width:760px;margin-top:-0.5rem;margin-bottom:1.75rem;">The GRC core — turning threats into numbers a business can act on, using recognised risk-assessment standards.</p>
+        <p style="max-width:760px;margin-top:-0.5rem;margin-bottom:1.75rem;">The GRC core: turning threats into numbers a business can act on, using recognised risk-assessment standards.</p>
         <div class="lab-list">
           <div class="card lab-entry card-col">
             <div class="card-meta">Risk quantification</div>
             <h3>Qualitative &amp; Quantitative Risk Assessment</h3>
             <dl>
-              <dt>Built</dt><dd>Assessed three information assets for a scenario organisation both qualitatively and quantitatively — computing Single Loss Expectancy, Annual Rate of Occurrence and Annual Loss Expectancy (SLE × ARO = ALE) to rank them by annualised exposure.</dd>
-              <dt>Takeaway</dt><dd>The highest-impact asset isn't always the highest risk: credential compromise produced the largest ALE because it's so much more likely — so the money goes to identity and access management first.</dd>
+              <dt>Built</dt><dd>Assessed three information assets for a scenario organisation both qualitatively and quantitatively, computing Single Loss Expectancy, Annual Rate of Occurrence and Annual Loss Expectancy (SLE × ARO = ALE) to rank them by annualised exposure.</dd>
+              <dt>Takeaway</dt><dd>The highest-impact asset isn't always the highest risk: credential compromise produced the largest ALE because it's so much more likely, so the money goes to identity and access management first.</dd>
               <dt>Evidence</dt><dd class="wide">Full write-up in <a href="projects/grc-risk-quantification.html">Projects →</a></dd>
               <dt>Tools</dt><dd class="wide"><div class="tag-row" style="margin:0;"><span class="badge badge-blue">NIST SP 800-30</span><span class="badge badge-blue">ISO 27005</span><span class="badge badge-blue">SLE / ARO / ALE</span></div></dd>
             </dl>
@@ -379,8 +379,8 @@ echo "if (" . json_encode($number) . " &lt; 10) { ... }";</pre></dd>
             <div class="card-meta">Threat analysis</div>
             <h3>Insufficient Identity, Credential, Access &amp; Key Management</h3>
             <dl>
-              <dt>Built</dt><dd>A full threat analysis of one of the CSA <em>Top Threats to Cloud Computing 2024</em> — definition, organisational impacts (data breach, control-plane takeover, cryptojacking, broken key separation) and a layered remediation plan from MFA and least privilege to key vaults, KMS rotation and continuous monitoring.</dd>
-              <dt>Takeaway</dt><dd>In the cloud every identity — human or machine — is a potential entry point. When keys are stored next to the data they protect, one leaked credential removes the last line of defence.</dd>
+              <dt>Built</dt><dd>A full threat analysis of one of the CSA <em>Top Threats to Cloud Computing 2024</em>: definition, organisational impacts (data breach, control-plane takeover, cryptojacking, broken key separation) and a layered remediation plan from MFA and least privilege to key vaults, KMS rotation and continuous monitoring.</dd>
+              <dt>Takeaway</dt><dd>In the cloud every identity, human or machine, is a potential entry point. When keys are stored next to the data they protect, one leaked credential removes the last line of defence.</dd>
               <dt>Tools</dt><dd class="wide"><div class="tag-row" style="margin:0;"><span class="badge badge-blue">CSA Top Threats</span><span class="badge badge-blue">NIST SP 800-207 (Zero Trust)</span><span class="badge badge-blue">Entra ID</span></div></dd>
             </dl>
           </div>
@@ -388,8 +388,8 @@ echo "if (" . json_encode($number) . " &lt; 10) { ... }";</pre></dd>
             <div class="card-meta">Cloud administration</div>
             <h3>Hands-On Azure Labs</h3>
             <dl>
-              <dt>Built</dt><dd>Provisioned and configured core Azure services end-to-end — storage accounts, virtual machines, virtual networks with IP-address design, an App Service web app and a cloud database — as the practical grounding behind the threat analysis.</dd>
-              <dt>Takeaway</dt><dd>Cloud security starts with knowing how the platform actually behaves — you can't reason about IAM, key management or network isolation you've never configured yourself.</dd>
+              <dt>Built</dt><dd>Provisioned and configured core Azure services end-to-end: storage accounts, virtual machines, virtual networks with IP-address design, an App Service web app and a cloud database, as the practical grounding behind the threat analysis.</dd>
+              <dt>Takeaway</dt><dd>Cloud security starts with knowing how the platform actually behaves; you can't reason about IAM, key management or network isolation you've never configured yourself.</dd>
               <dt>Tools</dt><dd class="wide"><div class="tag-row" style="margin:0;"><span class="badge badge-blue">Microsoft Azure</span><span class="badge badge-blue">Azure CLI</span></div></dd>
             </dl>
           </div>
@@ -404,14 +404,14 @@ echo "if (" . json_encode($number) . " &lt; 10) { ... }";</pre></dd>
             <h2 style="margin-top:0.25rem;">Foundations</h2>
           </div>
         </div>
-        <p style="max-width:760px;margin-top:-0.5rem;margin-bottom:1.75rem;">The supporting modules — databases, IT service management and project delivery — that round out the degree.</p>
+        <p style="max-width:760px;margin-top:-0.5rem;margin-bottom:1.75rem;">The supporting modules (databases, IT service management and project delivery) that round out the degree.</p>
         <div class="lab-list">
           <div class="card lab-entry card-col">
             <div class="card-meta">Databases</div>
             <h3>Database Management &amp; Resilience</h3>
             <dl>
-              <dt>Built</dt><dd>Database design and querying, plus the business-continuity side — how availability and disaster-recovery choices trade off against recovery objectives and cost.</dd>
-              <dt>Takeaway</dt><dd>Availability is a design decision with a price tag — the right level depends on how much data loss and downtime the business can actually tolerate.</dd>
+              <dt>Built</dt><dd>Database design and querying, plus the business-continuity side: how availability and disaster-recovery choices trade off against recovery objectives and cost.</dd>
+              <dt>Takeaway</dt><dd>Availability is a design decision with a price tag: the right level depends on how much data loss and downtime the business can actually tolerate.</dd>
               <dt>Tools</dt><dd class="wide"><div class="tag-row" style="margin:0;"><span class="badge badge-blue">SQL</span><span class="badge badge-blue">HA / DR concepts</span></div></dd>
             </dl>
           </div>
@@ -419,7 +419,7 @@ echo "if (" . json_encode($number) . " &lt; 10) { ... }";</pre></dd>
             <div class="card-meta">ITSM · delivery</div>
             <h3>IT Operations &amp; Project Management</h3>
             <dl>
-              <dt>Built</dt><dd>ITIL 4-aligned service-management work (service-desk operation and tooling) and structured IT project planning — scope, schedule, budget and tracking progress against a baseline.</dd>
+              <dt>Built</dt><dd>ITIL 4-aligned service-management work (service-desk operation and tooling) and structured IT project planning: scope, schedule, budget and tracking progress against a baseline.</dd>
               <dt>Takeaway</dt><dd>Service value comes from people, process and tooling together, and a baseline turns "are we on track?" from an opinion into a measurement. (Backed by my ITIL 4 Foundation certification.)</dd>
               <dt>Tools</dt><dd class="wide"><div class="tag-row" style="margin:0;"><span class="badge badge-blue">ITIL 4</span><span class="badge badge-blue">Project planning</span></div></dd>
             </dl>
@@ -434,7 +434,7 @@ echo "if (" . json_encode($number) . " &lt; 10) { ... }";</pre></dd>
     <div class="container text-center">
       <span class="eyebrow">// Two flagship write-ups</span>
       <h2>Want the full story?</h2>
-      <p style="max-width:560px;margin:1rem auto 2rem;">The deepest work has its own case study — the BSc capstone, the GRC risk assessment, and the Midnight Blizzard incident analysis.</p>
+      <p style="max-width:560px;margin:1rem auto 2rem;">The deepest work has its own case study: the BSc capstone, the GRC risk assessment, and the Midnight Blizzard incident analysis.</p>
       <a href="projects.html" class="btn btn-primary">View Case Studies</a>
     </div>
   </section>

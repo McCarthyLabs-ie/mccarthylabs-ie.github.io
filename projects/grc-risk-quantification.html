@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Risk Quantification — Turning Threats into Numbers | McCarthyLabs</title>
-  <meta name="description" content="A GRC case study by Ian McCarthy — a qualitative and quantitative (SLE/ARO/ALE) information-security risk assessment showing why identity infrastructure, not the core database, carried the highest annualised loss exposure." />
-  <meta property="og:title" content="Risk Quantification — Turning Threats into Numbers | McCarthyLabs" />
-  <meta property="og:description" content="A GRC case study by Ian McCarthy — a qualitative and quantitative (SLE/ARO/ALE) information-security risk assessment showing why identity infrastructure, not the core database, carried the highest annualised loss exposure." />
+  <title>Risk Quantification: Turning Threats into Numbers | McCarthyLabs</title>
+  <meta name="description" content="A GRC case study by Ian McCarthy: a qualitative and quantitative (SLE/ARO/ALE) information-security risk assessment showing why identity infrastructure, not the core database, carried the highest annualised loss exposure." />
+  <meta property="og:title" content="Risk Quantification: Turning Threats into Numbers | McCarthyLabs" />
+  <meta property="og:description" content="A GRC case study by Ian McCarthy: a qualitative and quantitative (SLE/ARO/ALE) information-security risk assessment showing why identity infrastructure, not the core database, carried the highest annualised loss exposure." />
   <meta property="og:url" content="https://mccarthylabs.ie/projects/grc-risk-quantification.html" />
   <meta property="og:type" content="website" />
   <link rel="canonical" href="https://mccarthylabs.ie/projects/grc-risk-quantification.html" />
@@ -39,7 +39,7 @@
     <div class="container">
       <span class="eyebrow fade-up">// Case Study · BSc Standards, Risk &amp; Compliance</span>
       <h1 class="fade-up-1" style="max-width:860px;">Risk Quantification: Turning Threats into Numbers</h1>
-      <p class="fade-up-2" style="max-width:720px;font-size:1.05rem;margin-top:0.75rem;">Qualitative risk tells you something feels dangerous. Quantitative risk tells you how much it costs you per year — and sometimes the two disagree. This assessment is where my Quality background and GRC meet.</p>
+      <p class="fade-up-2" style="max-width:720px;font-size:1.05rem;margin-top:0.75rem;">Qualitative risk tells you something feels dangerous. Quantitative risk tells you how much it costs you per year, and sometimes the two disagree. This assessment is where my Quality background and GRC meet.</p>
     </div>
   </section>
 
@@ -49,11 +49,11 @@
       <div class="prose" style="max-width:none;">
 
         <h2>The brief</h2>
-        <p>Assess the information-security risk to a fictional mid-sized credit union — roughly 10,000 members, a head office and several branches — across its three most critical systems: the core banking database, the Active Directory that authenticates everyone, and the member CRM. The goal wasn't just to rank them "high / medium / low"; it was to put a defensible annual figure on each, so the organisation could spend its next euro where it actually reduces the most risk.</p>
+        <p>Assess the information-security risk to a fictional mid-sized credit union (roughly 10,000 members, a head office and several branches) across its three most critical systems: the core banking database, the Active Directory that authenticates everyone, and the member CRM. The goal wasn't just to rank them "high / medium / low"; it was to put a defensible annual figure on each, so the organisation could spend its next euro where it actually reduces the most risk.</p>
 
         <h2>Two lenses on the same risk</h2>
-        <p>I assessed each asset twice. The <strong>qualitative</strong> pass rates impact on confidentiality, integrity and availability and the likelihood of compromise on a descriptive scale — the view that communicates well to a board. The <strong>quantitative</strong> pass converts that judgement into money using the standard model:</p>
-        <blockquote><strong>SLE × ARO = ALE</strong> — Single Loss Expectancy (the cost of one incident) multiplied by the Annual Rate of Occurrence (how many times a year you'd expect it) gives the Annual Loss Expectancy, a per-year exposure you can compare across very different assets.</blockquote>
+        <p>I assessed each asset twice. The <strong>qualitative</strong> pass rates impact on confidentiality, integrity and availability and the likelihood of compromise on a descriptive scale, the view that communicates well to a board. The <strong>quantitative</strong> pass converts that judgement into money using the standard model:</p>
+        <blockquote><strong>SLE × ARO = ALE</strong>: Single Loss Expectancy (the cost of one incident) multiplied by the Annual Rate of Occurrence (how many times a year you'd expect it) gives the Annual Loss Expectancy, a per-year exposure you can compare across very different assets.</blockquote>
 
         <h2>The numbers</h2>
         <div class="table-wrap">
@@ -68,22 +68,22 @@
         </div>
 
         <h2>The finding: impact and risk aren't the same thing</h2>
-        <p>Qualitatively, the <strong>core banking database</strong> is the scariest asset — compromise it and you've hit confidentiality, integrity and availability at once, with immediate regulatory exposure. By impact alone, it's the clear number one.</p>
-        <p>But annualised exposure tells a different story. <strong>Active Directory credentials carry the highest ALE — €150,000 a year — even though a single breach costs less than the banking database.</strong> Why? Because credential-based attacks (phishing, password spraying, pass-the-hash) are so much more <em>likely</em>: an ARO of 0.30 against the database's 0.15. Frequency, not worst-case severity, drives the yearly cost.</p>
+        <p>Qualitatively, the <strong>core banking database</strong> is the scariest asset: compromise it and you've hit confidentiality, integrity and availability at once, with immediate regulatory exposure. By impact alone, it's the clear number one.</p>
+        <p>But annualised exposure tells a different story. <strong>Active Directory credentials carry the highest ALE, €150,000 a year, even though a single breach costs less than the banking database.</strong> Why? Because credential-based attacks (phishing, password spraying, pass-the-hash) are so much more <em>likely</em>: an ARO of 0.30 against the database's 0.15. Frequency, not worst-case severity, drives the yearly cost.</p>
         <div class="bar-chart">
           <div class="bar-row"><span class="label">AD Domain Credentials</span><span class="track"><span class="fill" style="width:100%"></span></span><span class="value">€150k</span></div>
           <div class="bar-row"><span class="label">Core Banking Database</span><span class="track"><span class="fill" style="width:75%"></span></span><span class="value">€112.5k</span></div>
           <div class="bar-row"><span class="label">Core CRM Application</span><span class="track"><span class="fill" style="width:27%"></span></span><span class="value">€40k</span></div>
         </div>
-        <p>So the spending priority isn't where intuition points. The money goes first to <strong>identity and access management</strong> — MFA, privileged-access controls and AD hardening — because that's where the largest annualised loss sits. The database still needs strong protection; it just isn't where the <em>next</em> euro does the most good.</p>
+        <p>So the spending priority isn't where intuition points. The money goes first to <strong>identity and access management</strong> (MFA, privileged-access controls and AD hardening), because that's where the largest annualised loss sits. The database still needs strong protection; it just isn't where the <em>next</em> euro does the most good.</p>
 
         <h2>Why this is the GRC skill that matters</h2>
-        <p>Translating a fuzzy sense of danger into a number a decision-maker can act on is the core of governance, risk and compliance — and it's the same discipline I use every day in regulated-manufacturing Quality: quantify the risk, justify the control, and leave an auditable trail behind the decision. A risk register full of "highs" helps no one choose; an ALE ranking tells you exactly what to fund first.</p>
+        <p>Translating a fuzzy sense of danger into a number a decision-maker can act on is the core of governance, risk and compliance, and it's the same discipline I use every day in regulated-manufacturing Quality: quantify the risk, justify the control, and leave an auditable trail behind the decision. A risk register full of "highs" helps no one choose; an ALE ranking tells you exactly what to fund first.</p>
 
         <h2>Standards referenced</h2>
         <ul>
-          <li>NIST (2012). <em>Guide for Conducting Risk Assessments</em> — SP 800-30 Rev. 1.</li>
-          <li>ISO/IEC 27005:2018 — <em>Information security risk management.</em></li>
+          <li>NIST (2012). <em>Guide for Conducting Risk Assessments</em>. SP 800-30 Rev. 1.</li>
+          <li>ISO/IEC 27005:2018. <em>Information security risk management.</em></li>
           <li>Context: GDPR breach-reporting and penalty exposure as an impact driver.</li>
         </ul>
       </div>

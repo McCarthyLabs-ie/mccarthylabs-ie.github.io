@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Midnight Blizzard vs Microsoft — A MITRE ATT&amp;CK Analysis | McCarthyLabs</title>
+  <title>Midnight Blizzard vs Microsoft: A MITRE ATT&amp;CK Analysis | McCarthyLabs</title>
   <meta name="description" content="MSc incident analysis by Ian McCarthy mapping the 2024 Midnight Blizzard / Microsoft cloud-identity intrusion to 13 MITRE ATT&amp;CK techniques, and showing the entire chain resolves to three identity log sources." />
-  <meta property="og:title" content="Midnight Blizzard vs Microsoft — A MITRE ATT&amp;CK Analysis | McCarthyLabs" />
+  <meta property="og:title" content="Midnight Blizzard vs Microsoft: A MITRE ATT&amp;CK Analysis | McCarthyLabs" />
   <meta property="og:description" content="MSc incident analysis by Ian McCarthy mapping the 2024 Midnight Blizzard / Microsoft cloud-identity intrusion to 13 MITRE ATT&amp;CK techniques, and showing the entire chain resolves to three identity log sources." />
   <meta property="og:url" content="https://mccarthylabs.ie/projects/midnight-blizzard-attack-analysis.html" />
   <meta property="og:type" content="website" />
@@ -49,10 +49,10 @@
       <div class="prose" style="max-width:none;">
 
         <h2>The incident in one line</h2>
-        <p>Between late November 2023 and January 2024, the Russian state actor <strong>Midnight Blizzard (APT29)</strong> read the mailboxes of Microsoft's senior leadership, security and legal staff. The way in was not an exploit — it was a password spray against a forgotten legacy test account with no multi-factor authentication. This MSc analysis reconstructs the chain from primary disclosures and maps it to MITRE ATT&amp;CK.</p>
+        <p>Between late November 2023 and January 2024, the Russian state actor <strong>Midnight Blizzard (APT29)</strong> read the mailboxes of Microsoft's senior leadership, security and legal staff. The way in was not an exploit; it was a password spray against a forgotten legacy test account with no multi-factor authentication. This MSc analysis reconstructs the chain from primary disclosures and maps it to MITRE ATT&amp;CK.</p>
 
         <h2>How a test account reached the corporate directory</h2>
-        <p>The intrusion crossed a tenant boundary that identity architecture is supposed to hold. A legacy OAuth application in the compromised test tenant held privileged access into the corporate environment. The actor used it to register its own malicious applications and grant them the Exchange Online <span class="mono">full_access_as_app</span> role — access to every mailbox. All of it routed through residential proxies to blend in.</p>
+        <p>The intrusion crossed a tenant boundary that identity architecture is supposed to hold. A legacy OAuth application in the compromised test tenant held privileged access into the corporate environment. The actor used it to register its own malicious applications and grant them the Exchange Online <span class="mono">full_access_as_app</span> role: access to every mailbox. All of it routed through residential proxies to blend in.</p>
         <p>The decisive step has nothing to do with MFA. An application authenticates with a secret; no human is ever prompted. That is the core lesson of the whole case: <strong>in cloud identity, the application is often a weaker point than the person.</strong></p>
 
         <h2>The ATT&amp;CK mapping</h2>
@@ -73,22 +73,22 @@
         </div>
 
         <h2>The finding that surprised me</h2>
-        <p>Almost nothing in the chain was new. Of the ten techniques from spray to mail collection, <strong>seven already had APT29 entries in ATT&amp;CK citing 2020–2022 reporting — three of them Microsoft's own publications.</strong> The adversary's playbook had been documented, by the victim, years before the first password was sprayed. Threat intelligence only works as a control when an organisation applies it to itself.</p>
+        <p>Almost nothing in the chain was new. Of the ten techniques from spray to mail collection, <strong>seven already had APT29 entries in ATT&amp;CK citing 2020–2022 reporting, three of them Microsoft's own publications.</strong> The adversary's playbook had been documented, by the victim, years before the first password was sprayed. Threat intelligence only works as a control when an organisation applies it to itself.</p>
 
         <h2>No endpoint, three log sources</h2>
-        <p>The intrusion touched no endpoint at all. There was no malware to find, no host to image. Every trace sat in three identity and SaaS log sources: Entra ID sign-in logs, Entra audit logs, and the Microsoft 365 audit log. For a defender, the practical lesson is sharp: <strong>knowing which technique writes to which log matters more than recognising the technique's name.</strong> The rare events — a credential added to a dormant application, an app-role grant, the first sign-in of an application that had never signed in before — are nearly a signature if you're exporting the right logs.</p>
+        <p>The intrusion touched no endpoint at all. There was no malware to find, no host to image. Every trace sat in three identity and SaaS log sources: Entra ID sign-in logs, Entra audit logs, and the Microsoft 365 audit log. For a defender, the practical lesson is sharp: <strong>knowing which technique writes to which log matters more than recognising the technique's name.</strong> The rare events (a credential added to a dormant application, an app-role grant, the first sign-in of an application that had never signed in before) are nearly a signature if you're exporting the right logs.</p>
 
         <h2>Where the chain could have been cut</h2>
-        <p>Public commentary fixed on the missing MFA. MFA on the test account would have stopped <em>this</em> spray, but it was the weakest control to rely on — any other route in would have reopened the same path. The control that fails closed is <strong>privilege</strong>: had the legacy application held no role-granting permission in the corporate tenant, the token abuse would have yielded nothing and the persistence steps could not have followed. The priority recommendations target application identity governance and monitoring, not user MFA alone:</p>
+        <p>Public commentary fixed on the missing MFA. MFA on the test account would have stopped <em>this</em> spray, but it was the weakest control to rely on; any other route in would have reopened the same path. The control that fails closed is <strong>privilege</strong>: had the legacy application held no role-granting permission in the corporate tenant, the token abuse would have yielded nothing and the persistence steps could not have followed. The priority recommendations target application identity governance and monitoring, not user MFA alone:</p>
         <ul>
           <li>Strip privileged application permissions; flag service principals owned by another tenant and remove ownerless ones.</li>
-          <li>Treat non-production tenants as production for identity — no dormant tenants, no test-tenant apps holding corporate permissions.</li>
+          <li>Treat non-production tenants as production for identity: no dormant tenants, no test-tenant apps holding corporate permissions.</li>
           <li>Scope mailbox access and retire legacy protocols; replace tenant-wide roles with per-mailbox application RBAC.</li>
-          <li>Alert on the rare events — credentials added to existing apps, app-role grants, first sign-in of a dormant application.</li>
+          <li>Alert on the rare events: credentials added to existing apps, app-role grants, first sign-in of a dormant application.</li>
         </ul>
 
         <h2>Why this one</h2>
-        <p>I chose this incident because the victim is the identity platform most organisations depend on, so its failure modes are widely shared, and because the techniques are ones an analyst meets in any Microsoft 365 investigation. It's the clearest demonstration I found that modern intrusions are won and lost in identity logs — which is exactly where detection engineering has to live.</p>
+        <p>I chose this incident because the victim is the identity platform most organisations depend on, so its failure modes are widely shared, and because the techniques are ones an analyst meets in any Microsoft 365 investigation. It's the clearest demonstration I found that modern intrusions are won and lost in identity logs, which is exactly where detection engineering has to live.</p>
       </div>
       <div class="callout" style="margin-top:2.5rem;"><strong>Academic work.</strong> This write-up summarises coursework submitted for assessment, rewritten for a general audience. It draws only on public sources and the author's own analysis. Identifiers and internal references have been removed.</div>
       <div class="page-nav">

@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>The 2021 HSE Ransomware Attack — A Technical Review | McCarthyLabs</title>
-  <meta name="description" content="Ian McCarthy's technical review of the 2021 HSE Conti ransomware attack — the 44-day detection-to-detonation window, the structural failures that let a phishing email become a national crisis, and the eight controls that answer them." />
-  <meta property="og:title" content="The 2021 HSE Ransomware Attack — A Technical Review | McCarthyLabs" />
-  <meta property="og:description" content="Ian McCarthy's technical review of the 2021 HSE Conti ransomware attack — the 44-day detection-to-detonation window, the structural failures that let a phishing email become a national crisis, and the eight controls that answer them." />
+  <title>The 2021 HSE Ransomware Attack: A Technical Review | McCarthyLabs</title>
+  <meta name="description" content="Ian McCarthy's technical review of the 2021 HSE Conti ransomware attack: the 44-day detection-to-detonation window, the structural failures that let a phishing email become a national crisis, and the eight controls that answer them." />
+  <meta property="og:title" content="The 2021 HSE Ransomware Attack: A Technical Review | McCarthyLabs" />
+  <meta property="og:description" content="Ian McCarthy's technical review of the 2021 HSE Conti ransomware attack: the 44-day detection-to-detonation window, the structural failures that let a phishing email become a national crisis, and the eight controls that answer them." />
   <meta property="og:url" content="https://mccarthylabs.ie/projects/hse-ransomware-analysis.html" />
   <meta property="og:type" content="website" />
   <link rel="canonical" href="https://mccarthylabs.ie/projects/hse-ransomware-analysis.html" />
@@ -49,17 +49,17 @@
       <div class="prose" style="max-width:none;">
 
         <h2>The most revealing number is 44</h2>
-        <p>In May 2021, Conti ransomware detonated across the Health Service Executive — more than 70,000 devices across roughly 4,000 locations, patient systems down, radiotherapy halted at five centres, clinicians back to paper. It became the reference case for public-sector cyber resilience. But the number that matters most isn't the €51m direct cost or the 130-day recovery. It's <strong>44 days</strong>.</p>
-        <p>That's the window between the first credible detection — Cobalt Strike and Mimikatz alerts on 31 March — and detonation on 14 May. The controls that could have caught it <em>existed</em>, and had already fired. On 13 May alone, the day before detonation, at least sixteen further threat alerts went unactioned. This was a detection-and-response failure compounding an initial-access failure, not a single unlucky email.</p>
+        <p>In May 2021, Conti ransomware detonated across the Health Service Executive, more than 70,000 devices across roughly 4,000 locations, patient systems down, radiotherapy halted at five centres, clinicians back to paper. It became the reference case for public-sector cyber resilience. But the number that matters most isn't the €51m direct cost or the 130-day recovery. It's <strong>44 days</strong>.</p>
+        <p>That's the window between the first credible detection (Cobalt Strike and Mimikatz alerts on 31 March) and detonation on 14 May. The controls that could have caught it <em>existed</em>, and had already fired. On 13 May alone, the day before detonation, at least sixteen further threat alerts went unactioned. This was a detection-and-response failure compounding an initial-access failure, not a single unlucky email.</p>
 
         <h2>Timeline</h2>
         <div class="table-wrap">
           <table class="data-table">
             <thead><tr><th>Date</th><th>Event</th></tr></thead>
             <tbody>
-              <tr><td class="mono">18 Mar</td><td>Malicious Excel attachment opened — patient zero</td></tr>
+              <tr><td class="mono">18 Mar</td><td>Malicious Excel attachment opened, patient zero</td></tr>
               <tr><td class="mono">23 Mar</td><td>Attackers establish persistence</td></tr>
-              <tr><td class="mono">31 Mar</td><td><strong>Cobalt Strike &amp; Mimikatz alerts fire</strong> — tooling in monitor-only mode, no auto-quarantine</td></tr>
+              <tr><td class="mono">31 Mar</td><td><strong>Cobalt Strike &amp; Mimikatz alerts fire</strong>: tooling in monitor-only mode, no auto-quarantine</td></tr>
               <tr><td class="mono">7–12 May</td><td>Lateral movement through multiple hospital domains</td></tr>
               <tr><td class="mono">13 May</td><td>≥16 further threat alerts go unactioned</td></tr>
               <tr><td class="mono">14 May</td><td>Conti ransomware detonates (~01:00)</td></tr>
@@ -76,16 +76,16 @@
           <div class="bar-row"><span class="label">Incomplete MFA / identity protection</span><span class="track"><span class="fill" style="width:80%"></span></span><span class="value">High</span></div>
           <div class="bar-row"><span class="label">Backup &amp; continuity weakness</span><span class="track"><span class="fill" style="width:72%"></span></span><span class="value">High</span></div>
         </div>
-        <p>Bidirectional domain trust between central and hospital domains meant one compromised account became multi-domain enterprise access. Ransomware doesn't scale unless it can reach directory services, backups and file shares — the HSE environment offered those routes too little resistance.</p>
+        <p>Bidirectional domain trust between central and hospital domains meant one compromised account became multi-domain enterprise access. Ransomware doesn't scale unless it can reach directory services, backups and file shares: the HSE environment offered those routes too little resistance.</p>
 
         <h2>The recovery told its own story</h2>
-        <p>The State was right to refuse the ~$20m ransom. But recovery then depended on a decryption tool <em>obtained from the attackers</em> and enhanced by external responders — because independent backup restoration couldn't carry it. Some backups had been encrypted in the attack; tape coverage was periodic. Where backup resilience can't support independent restoration, an organisation has partly surrendered recovery autonomy regardless of whether it pays.</p>
+        <p>The State was right to refuse the ~$20m ransom. But recovery then depended on a decryption tool <em>obtained from the attackers</em> and enhanced by external responders, because independent backup restoration couldn't carry it. Some backups had been encrypted in the attack; tape coverage was periodic. Where backup resilience can't support independent restoration, an organisation has partly surrendered recovery autonomy regardless of whether it pays.</p>
 
         <h2>The eight controls that answer it</h2>
         <p>Each maps to a specific documented failure, not generic best practice: risk-based patch and asset governance; phishing-resistant MFA across <em>every</em> authentication pathway; segmentation and zero-trust to replace flat domain trust; EDR plus a 24-hour SOC with ransomware-precursor playbooks; a tested 3-2-1 backup strategy with immutable, air-gapped copies; macro restriction and email filtering; rehearsed incident response with a minimum-viable-service map for clinical continuity; and just-in-time third-party access management.</p>
 
         <h2>The durable lesson</h2>
-        <p>The baseline assumption has to change. Phishing will succeed; credentials will be stolen; lateral movement will be attempted. What decides the outcome is whether identity protection, segmentation, detection-and-response, backup resilience and incident rehearsal are mature enough to stop a local intrusion becoming an enterprise failure. On that measure the HSE attack remains one of the clearest demonstrations of what happens when security is treated as a secondary IT concern rather than — in a hospital — a patient-safety function.</p>
+        <p>The baseline assumption has to change. Phishing will succeed; credentials will be stolen; lateral movement will be attempted. What decides the outcome is whether identity protection, segmentation, detection-and-response, backup resilience and incident rehearsal are mature enough to stop a local intrusion becoming an enterprise failure. On that measure the HSE attack remains one of the clearest demonstrations of what happens when security is treated as a secondary IT concern rather than, in a hospital, a patient-safety function.</p>
 
         <h2>Key sources</h2>
         <ul>

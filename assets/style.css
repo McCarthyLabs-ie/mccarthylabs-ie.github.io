@@ -1,5 +1,5 @@
 /* ============================================================
-   McCARTHYLABS.IE — Global Stylesheet
+   McCARTHYLABS.IE - Global Stylesheet
    Design: Clinical White canvas + dark code/terminal accents
    Fonts: Oxanium (headings) + DM Sans (body) + JetBrains Mono (code)
    ============================================================ */
@@ -11,7 +11,7 @@
 
 :root {
   /* Light canvas */
-  --bg-0:        #f8fafc;   /* page — clinical off-white */
+  --bg-0:        #f8fafc;   /* page - clinical off-white */
   --bg-1:        #f1f5f9;   /* alt sections */
   --bg-2:        #eef2f7;   /* inputs, chips */
   --bg-card:     #ffffff;
@@ -20,16 +20,16 @@
   --border-s:    #cbd5e1;   /* stronger border */
   --border-h:    #2563eb;
   --blue:        #2563eb;
-  --blue-light:  #1d4ed8;   /* links / accents — AA on white */
+  --blue-light:  #1d4ed8;   /* links / accents - AA on white */
   --blue-glow:   #1e40af;
-  --cyan:        #0e7490;   /* eyebrows / labels — AA on white */
+  --cyan:        #0e7490;   /* eyebrows / labels - AA on white */
   --text-1:      #0f172a;
   --text-2:      #475569;
   --text-3:      #64748b;
   --accent:      #2563eb;
   --shadow-sm:   0 1px 2px rgba(15,23,42,0.05);
   --shadow-md:   0 12px 32px rgba(15,23,42,0.09);
-  /* Dark "ink" — code blocks, terminals, dark bands */
+  /* Dark "ink" - code blocks, terminals, dark bands */
   --ink-0:       #0d1117;
   --ink-1:       #161b22;
   --ink-border:  #30363d;
@@ -334,7 +334,7 @@ a:hover { color: var(--blue-glow); }
 }
 
 /* ── Footer ───────────────────────────────────────────────── */
-/* Dark bands — footer + any .section-dark. Re-maps tokens locally so
+/* Dark bands - footer + any .section-dark. Re-maps tokens locally so
    everything inside (text, borders, eyebrows, links) flips to dark mode. */
 .footer,
 .section-dark {
@@ -574,7 +574,7 @@ a:hover { color: var(--blue-glow); }
 }
 
 /* ============================================================
-   Portfolio v2 additions — case studies, lab notebook, matrix
+   Portfolio v2 additions - case studies, lab notebook, matrix
    ============================================================ */
 .section-alt { background: var(--bg-1); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
 .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.25rem; }
@@ -616,7 +616,7 @@ a:hover { color: var(--blue-glow); }
 .lab-entry .wide { grid-column: 1 / -1; }
 .lab-entry:target { border-color: var(--cyan); box-shadow: 0 0 0 1px var(--cyan), var(--shadow-md); }
 
-/* Terminal / code blocks — the dark islands on the white canvas */
+/* Terminal / code blocks - the dark islands on the white canvas */
 pre.code, .prose pre, .terminal {
   position: relative;
   background: var(--ink-0);

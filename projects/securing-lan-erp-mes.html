@@ -4,9 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Securing ERP &amp; MES Access in Regulated Manufacturing | McCarthyLabs</title>
-  <meta name="description" content="BSc capstone by Ian McCarthy — a defence-in-depth LAN access-control architecture for ERP and MES systems in regulated medical-device manufacturing, using NIST CSF 2.0, VLAN segmentation, hybrid RBAC/ABAC and OPC UA enforcement." />
+  <meta name="description" content="BSc capstone by Ian McCarthy: a defence-in-depth LAN access-control architecture for ERP and MES systems in regulated medical-device manufacturing, using NIST CSF 2.0, VLAN segmentation, hybrid RBAC/ABAC and OPC UA enforcement." />
   <meta property="og:title" content="Securing ERP &amp; MES Access in Regulated Manufacturing | McCarthyLabs" />
-  <meta property="og:description" content="BSc capstone by Ian McCarthy — a defence-in-depth LAN access-control architecture for ERP and MES systems in regulated medical-device manufacturing, using NIST CSF 2.0, VLAN segmentation, hybrid RBAC/ABAC and OPC UA enforcement." />
+  <meta property="og:description" content="BSc capstone by Ian McCarthy: a defence-in-depth LAN access-control architecture for ERP and MES systems in regulated medical-device manufacturing, using NIST CSF 2.0, VLAN segmentation, hybrid RBAC/ABAC and OPC UA enforcement." />
   <meta property="og:url" content="https://mccarthylabs.ie/projects/securing-lan-erp-mes.html" />
   <meta property="og:type" content="website" />
   <link rel="canonical" href="https://mccarthylabs.ie/projects/securing-lan-erp-mes.html" />
@@ -39,7 +39,7 @@
     <div class="container">
       <span class="eyebrow fade-up">// Case Study · BSc Capstone</span>
       <h1 class="fade-up-1" style="max-width:860px;">Securing LAN Access to ERP &amp; MES Systems in Regulated Manufacturing</h1>
-      <p class="fade-up-2" style="max-width:720px;font-size:1.05rem;margin-top:0.75rem;">A defence-in-depth access-control architecture for the systems that run a regulated medical-device plant — built around NIST CSF 2.0, network segmentation and hybrid RBAC/ABAC enforced through OPC UA.</p>
+      <p class="fade-up-2" style="max-width:720px;font-size:1.05rem;margin-top:0.75rem;">A defence-in-depth access-control architecture for the systems that run a regulated medical-device plant, built around NIST CSF 2.0, network segmentation and hybrid RBAC/ABAC enforced through OPC UA.</p>
     </div>
   </section>
 
@@ -49,40 +49,40 @@
       <div class="prose" style="max-width:none;">
 
         <h2>The problem</h2>
-        <p>In a regulated medical-device plant, the Enterprise Resource Planning (ERP) and Manufacturing Execution Systems (MES) don't just hold business data — they run production, record material traceability and hold the quality records an auditor will ask for. A weakness in LAN access to those systems is simultaneously a cybersecurity risk, an operational-continuity risk and a compliance exposure.</p>
-        <p>My BSc capstone designed a defence-in-depth architecture to control that access: secure enough to resist compromise and insider misuse, but without interfering with production continuity or safe operation. The work was grounded in a critical review of two key papers on access control for smart manufacturing (Leander et al., 2020, 2023), whose central finding shaped the whole design — dynamic manufacturing needs <em>both</em> expressive access policy and lightweight, standards-aligned enforcement, or the policy stays theoretical.</p>
+        <p>In a regulated medical-device plant, the Enterprise Resource Planning (ERP) and Manufacturing Execution Systems (MES) don't just hold business data; they run production, record material traceability and hold the quality records an auditor will ask for. A weakness in LAN access to those systems is simultaneously a cybersecurity risk, an operational-continuity risk and a compliance exposure.</p>
+        <p>My BSc capstone designed a defence-in-depth architecture to control that access: secure enough to resist compromise and insider misuse, but without interfering with production continuity or safe operation. The work was grounded in a critical review of two key papers on access control for smart manufacturing (Leander et al., 2020, 2023), whose central finding shaped the whole design: dynamic manufacturing needs <em>both</em> expressive access policy and lightweight, standards-aligned enforcement, or the policy stays theoretical.</p>
 
         <h2>Framework</h2>
-        <p>The design is structured around the six functions of the <strong>NIST Cybersecurity Framework 2.0</strong> — Govern, Identify, Protect, Detect, Respond, Recover — chosen because the goal was not just to harden a network but to build a governable security design that also aligns with the direction of the EU NIS2 Directive. A core ICS principle runs through it: safety-critical functions (emergency stops, alarms, safe-state controls) stay logically independent of the central authorisation workflow, so a failure of IT services never compromises safe operation.</p>
+        <p>The design is structured around the six functions of the <strong>NIST Cybersecurity Framework 2.0</strong> (Govern, Identify, Protect, Detect, Respond, Recover), chosen because the goal was not just to harden a network but to build a governable security design that also aligns with the direction of the EU NIS2 Directive. A core ICS principle runs through it: safety-critical functions (emergency stops, alarms, safe-state controls) stay logically independent of the central authorisation workflow, so a failure of IT services never compromises safe operation.</p>
 
         <h2>1 · Segment the network</h2>
         <p>The LAN is divided into five trust zones so that ordinary office devices never talk directly to sensitive manufacturing systems. Traffic between zones is governed by a deny-by-default firewall / Layer-3 policy: office IT has no direct path to MES application servers, privileged administration must originate from a hardened jump host, and ERP integration is restricted to documented business flows only.</p>
         <figure class="figure">
           <img src="../assets/projects/network-segmentation.png" alt="Five-VLAN segmentation design with a deny-by-default firewall between office IT, manufacturing operations, manufacturing application, infrastructure/security services and administrative management zones." />
-          <figcaption>Figure 1 — Five-zone LAN segmentation. Office IT is denied any direct path to ERP/MES; only approved production traffic and jump-host administration cross into the application zone.</figcaption>
+          <figcaption>Figure 1. Five-zone LAN segmentation. Office IT is denied any direct path to ERP/MES; only approved production traffic and jump-host administration cross into the application zone.</figcaption>
         </figure>
 
         <h2>2 · Govern with RBAC, enforce with ABAC</h2>
-        <p>Role-Based Access Control is the governance baseline — it maps cleanly onto training records, management approval and segregation of duties, which is what a regulated environment audits against. Three functional roles are defined: <strong>Operations</strong>, <strong>Quality</strong> and <strong>Engineering</strong>, each limited to the functions their work requires (only Quality can release a batch from hold; only Engineering can change process configuration, and only in an approved maintenance state).</p>
+        <p>Role-Based Access Control is the governance baseline; it maps cleanly onto training records, management approval and segregation of duties, which is what a regulated environment audits against. Three functional roles are defined: <strong>Operations</strong>, <strong>Quality</strong> and <strong>Engineering</strong>, each limited to the functions their work requires (only Quality can release a batch from hold; only Engineering can change process configuration, and only in an approved maintenance state).</p>
         <p>RBAC alone is too static for a live production line, so Attribute-Based Access Control is layered on top. A user in a valid role can still be denied if the request comes from an unmanaged device, falls outside an approved shift window, or arrives when the equipment or batch is in the wrong operational state. This gives stronger least-privilege without losing the audit clarity of roles.</p>
         <figure class="figure">
           <img src="../assets/projects/rbac-abac-decision-flow.png" alt="Access decision flow: identify RBAC role, validate ABAC attributes (device trust, shift/training, MES/OPC UA state), then permit or deny with the decision logged for audit." />
-          <figcaption>Figure 2 — Hybrid RBAC/ABAC decision flow. The role opens the door; the attributes decide whether this request, right now, from this device, is allowed — and every decision is logged.</figcaption>
+          <figcaption>Figure 2. Hybrid RBAC/ABAC decision flow. The role opens the door; the attributes decide whether this request, right now, from this device, is allowed, and every decision is logged.</figcaption>
         </figure>
 
         <h2>3 · Enforce at three layers</h2>
         <p>Enforcement uses the standard Policy Enforcement / Decision / Information / Administration Point (PEP/PDP/PIP/PAP) model, with enforcement points at three layers for defence in depth: the application entry layer for ERP/MES, the <strong>OPC UA</strong> service or gateway (which already supports role-based security and session mapping, per OPC UA Part 18), and the network itself through VLAN and firewall policy. Because OPC UA natively supports RBAC and token-based mechanisms, the design leverages existing protocol capability rather than bespoke enforcement operators would distrust.</p>
 
-        <h2>4 · Prove it holds — feasibility testing</h2>
+        <h2>4 · Prove it holds: feasibility testing</h2>
         <p>The literature's clearest warning is that access-control designs which are sound on paper fail in deployment on latency, availability or auditability. The testing plan targets exactly those:</p>
         <ul>
-          <li><strong>Latency</strong> — compare baseline vs secured MES transaction times to confirm authorisation checks don't delay production.</li>
-          <li><strong>Failure modes</strong> — simulate loss of central authentication and policy services; new privileged actions must fail closed while safety functions stay independent and available.</li>
-          <li><strong>Auditability</strong> — verify the design produces inspection-ready evidence: who accessed what, when, from where, under which role, with what result, and with approval linkage on high-impact actions.</li>
+          <li><strong>Latency</strong>: compare baseline vs secured MES transaction times to confirm authorisation checks don't delay production.</li>
+          <li><strong>Failure modes</strong>: simulate loss of central authentication and policy services; new privileged actions must fail closed while safety functions stay independent and available.</li>
+          <li><strong>Auditability</strong>: verify the design produces inspection-ready evidence: who accessed what, when, from where, under which role, with what result, and with approval linkage on high-impact actions.</li>
         </ul>
 
         <h2>Why it matters</h2>
-        <p>Securing ERP/MES access in regulated manufacturing can't be solved by any single control. Network design, identity governance, enforcement architecture and operational testing have to work together — and the whole thing has to be built around industrial priorities: availability, safe operation, controlled change and auditability. That intersection of compliance evidence and security engineering is exactly where my Quality background and my security work meet.</p>
+        <p>Securing ERP/MES access in regulated manufacturing can't be solved by any single control. Network design, identity governance, enforcement architecture and operational testing have to work together, and the whole thing has to be built around industrial priorities: availability, safe operation, controlled change and auditability. That intersection of compliance evidence and security engineering is exactly where my Quality background and my security work meet.</p>
 
         <h2>Key references</h2>
         <ul>

@@ -79,13 +79,16 @@
             <p style="margin:0.5rem 0 0;">Thanks for reaching out. I'll get back to you as soon as I can.</p>
           </div>
 
-          <!-- NOTE: replace the action below with your real Formspree form endpoint (create a free form at formspree.io → it gives a URL like https://formspree.io/f/abcdwxyz). The current value is a placeholder and will NOT deliver messages. -->
-          <form id="contactForm" style="display:flex;flex-direction:column;gap:1.25rem;" action="https://formspree.io/f/your-form-id" method="POST">
+          <!-- Delivered via FormSubmit (formsubmit.co) — no account needed. First submission triggers a one-time activation email.
+               After activating, you can swap the email in the action URL for the random alias FormSubmit gives you. -->
+          <form id="contactForm" style="display:flex;flex-direction:column;gap:1.25rem;" action="https://formsubmit.co/ajax/mccarthyiann@gmail.com" method="POST">
             <!-- Honeypot -->
             <div class="hp-field" aria-hidden="true">
-              <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" />
+              <input type="text" name="_honey" tabindex="-1" autocomplete="off" />
             </div>
             <input type="hidden" name="_subject" value="New message from mccarthylabs.ie" />
+            <input type="hidden" name="_template" value="table" />
+            <input type="hidden" name="_captcha" value="false" />
 
             <div class="grid-2" style="gap:1rem;">
               <div class="form-group">
@@ -193,7 +196,7 @@
   window.addEventListener('scroll', () => s.classList.toggle('visible', window.scrollY > 400));
   s.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 
-  // Form submission via Formspree
+  // Form submission via FormSubmit (AJAX endpoint returns JSON)
   const form = document.getElementById('contactForm');
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -207,7 +210,8 @@
         body: new FormData(form),
         headers: { 'Accept': 'application/json' }
       });
-      if (res.ok) {
+      const data = await res.json().catch(() => ({}));
+      if (res.ok && String(data.success) === 'true') {
         form.style.display = 'none';
         document.getElementById('formSuccess').classList.add('visible');
       } else {

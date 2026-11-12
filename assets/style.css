@@ -1,30 +1,43 @@
 /* ============================================================
    McCARTHYLABS.IE — Global Stylesheet
-   Design: Dark Navy / Circuit Aesthetic
-   Fonts: Oxanium (headings) + DM Sans (body)
+   Design: Clinical White canvas + dark code/terminal accents
+   Fonts: Oxanium (headings) + DM Sans (body) + JetBrains Mono (code)
    ============================================================ */
 
-@import url('https://fonts.googleapis.com/css2?family=Oxanium:wght@300;400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Oxanium:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap');
 
 /* ── Reset & Base ──────────────────────────────────────────── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  --bg-0:        #070b14;
-  --bg-1:        #0b1120;
-  --bg-2:        #0f1729;
-  --bg-card:     #111827;
-  --bg-card-h:   #162035;
-  --border:      #1e2d4a;
+  /* Light canvas */
+  --bg-0:        #f8fafc;   /* page — clinical off-white */
+  --bg-1:        #f1f5f9;   /* alt sections */
+  --bg-2:        #eef2f7;   /* inputs, chips */
+  --bg-card:     #ffffff;
+  --bg-card-h:   #ffffff;
+  --border:      #e2e8f0;
+  --border-s:    #cbd5e1;   /* stronger border */
   --border-h:    #2563eb;
   --blue:        #2563eb;
-  --blue-light:  #3b82f6;
-  --blue-glow:   #1d4ed8;
-  --cyan:        #06b6d4;
-  --text-1:      #f1f5f9;
-  --text-2:      #94a3b8;
+  --blue-light:  #1d4ed8;   /* links / accents — AA on white */
+  --blue-glow:   #1e40af;
+  --cyan:        #0e7490;   /* eyebrows / labels — AA on white */
+  --text-1:      #0f172a;
+  --text-2:      #475569;
   --text-3:      #64748b;
   --accent:      #2563eb;
+  --shadow-sm:   0 1px 2px rgba(15,23,42,0.05);
+  --shadow-md:   0 12px 32px rgba(15,23,42,0.09);
+  /* Dark "ink" — code blocks, terminals, dark bands */
+  --ink-0:       #0d1117;
+  --ink-1:       #161b22;
+  --ink-border:  #30363d;
+  --ink-text:    #e6edf3;
+  --ink-muted:   #8b949e;
+  --ink-cyan:    #22d3ee;
+  --ink-green:   #3fb950;
+  --font-mono:   'JetBrains Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
   --font-head:   'Oxanium', sans-serif;
   --font-body:   'DM Sans', sans-serif;
   --radius:      10px;
@@ -32,7 +45,8 @@
   --transition:  0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; color-scheme: light; }
+::selection { background: #bfdbfe; color: #0f172a; }
 
 body {
   font-family: var(--font-body);
@@ -53,7 +67,9 @@ body::before {
     linear-gradient(var(--border) 1px, transparent 1px),
     linear-gradient(90deg, var(--border) 1px, transparent 1px);
   background-size: 48px 48px;
-  opacity: 0.18;
+  opacity: 0.55;
+  -webkit-mask-image: linear-gradient(to bottom, #000 0%, transparent 70%);
+          mask-image: linear-gradient(to bottom, #000 0%, transparent 70%);
   pointer-events: none;
   z-index: 0;
 }
@@ -66,7 +82,7 @@ body::after {
   right: -200px;
   width: 600px;
   height: 600px;
-  background: radial-gradient(circle, #2563eb22 0%, transparent 70%);
+  background: radial-gradient(circle, #2563eb14 0%, transparent 70%);
   pointer-events: none;
   z-index: 0;
 }
@@ -87,7 +103,7 @@ h4 { font-size: 1rem; font-weight: 600; }
 
 p { color: var(--text-2); margin-bottom: 1rem; }
 a { color: var(--blue-light); text-decoration: none; transition: color var(--transition); }
-a:hover { color: #fff; }
+a:hover { color: var(--blue-glow); }
 
 .eyebrow {
   font-family: var(--font-head);
@@ -124,7 +140,7 @@ a:hover { color: #fff; }
   top: 0; left: 0; right: 0;
   z-index: 1000;
   padding: 0.75rem 0;
-  background: rgba(7, 11, 20, 0.85);
+  background: rgba(255, 255, 255, 0.85);
   backdrop-filter: blur(16px);
   border-bottom: 1px solid var(--border);
   transition: all var(--transition);
@@ -184,7 +200,7 @@ a:hover { color: #fff; }
 .nav-links a:hover,
 .nav-links a.active {
   color: var(--text-1);
-  background: var(--border);
+  background: var(--bg-1);
 }
 
 .nav-links a.active { color: var(--blue-light); }
@@ -196,7 +212,7 @@ a:hover { color: #fff; }
   border-radius: 6px !important;
 }
 
-.nav-cta:hover { background: var(--blue-light) !important; transform: translateY(-1px); }
+.nav-cta:hover { background: var(--blue-glow) !important; transform: translateY(-1px); }
 
 /* Mobile hamburger */
 .nav-toggle {
@@ -230,25 +246,25 @@ a:hover { color: #fff; }
 .btn-primary {
   background: var(--blue);
   color: #fff;
-  box-shadow: 0 0 24px #2563eb44;
+  box-shadow: 0 4px 14px #2563eb33;
 }
 
 .btn-primary:hover {
   background: var(--blue-light);
   color: #fff;
   transform: translateY(-2px);
-  box-shadow: 0 0 32px #2563eb66;
+  box-shadow: 0 8px 22px #2563eb44;
 }
 
 .btn-outline {
-  background: transparent;
+  background: var(--bg-card);
   color: var(--text-1);
-  border: 1px solid var(--border-h);
+  border: 1px solid var(--border-s);
 }
 
 .btn-outline:hover {
-  background: var(--border);
-  color: #fff;
+  border-color: var(--blue);
+  color: var(--blue-light);
   transform: translateY(-2px);
 }
 
@@ -263,6 +279,7 @@ a:hover { color: #fff; }
   transition: all var(--transition);
   position: relative;
   overflow: hidden;
+  box-shadow: var(--shadow-sm);
 }
 
 .card::before {
@@ -279,7 +296,7 @@ a:hover { color: #fff; }
   border-color: var(--border-h);
   background: var(--bg-card-h);
   transform: translateY(-4px);
-  box-shadow: 0 16px 48px #0005;
+  box-shadow: var(--shadow-md);
 }
 
 .card:hover::before { opacity: 1; }
@@ -297,11 +314,11 @@ a:hover { color: #fff; }
   border: 1px solid;
 }
 
-.badge-blue  { background: #2563eb18; border-color: #2563eb66; color: var(--blue-light); }
-.badge-cyan  { background: #06b6d418; border-color: #06b6d466; color: var(--cyan); }
-.badge-green { background: #10b98118; border-color: #10b98166; color: #34d399; }
-.badge-amber { background: #f59e0b18; border-color: #f59e0b66; color: #fbbf24; }
-.badge-red   { background: #ef444418; border-color: #ef444466; color: #f87171; }
+.badge-blue  { background: #eff6ff; border-color: #bfdbfe; color: #1d4ed8; }
+.badge-cyan  { background: #ecfeff; border-color: #a5f3fc; color: #0e7490; }
+.badge-green { background: #ecfdf5; border-color: #a7f3d0; color: #047857; }
+.badge-amber { background: #fffbeb; border-color: #fde68a; color: #b45309; }
+.badge-red   { background: #fef2f2; border-color: #fecaca; color: #b91c1c; }
 
 /* ── Section Divider ──────────────────────────────────────── */
 .divider {
@@ -317,8 +334,24 @@ a:hover { color: #fff; }
 }
 
 /* ── Footer ───────────────────────────────────────────────── */
+/* Dark bands — footer + any .section-dark. Re-maps tokens locally so
+   everything inside (text, borders, eyebrows, links) flips to dark mode. */
+.footer,
+.section-dark {
+  --text-1:     var(--ink-text);
+  --text-2:     #a3b1c2;
+  --text-3:     var(--ink-muted);
+  --border:     var(--ink-border);
+  --cyan:       var(--ink-cyan);
+  --blue-light: #60a5fa;
+  --bg-card:    var(--ink-1);
+  background: var(--ink-0);
+  color: var(--text-1);
+}
+.section-dark a:not(.btn):hover, .footer a:hover { color: #fff; }
+
 .footer {
-  border-top: 1px solid var(--border);
+  border-top: 1px solid var(--ink-border);
   padding: 3rem 0;
   position: relative;
   z-index: 1;
@@ -378,9 +411,9 @@ a:hover { color: #fff; }
 }
 
 .social-icon:hover {
-  border-color: var(--blue-light);
-  color: var(--blue-light);
-  background: #2563eb14;
+  border-color: var(--ink-cyan);
+  color: var(--ink-cyan);
+  background: #22d3ee14;
 }
 
 .footer-copy {
@@ -441,10 +474,15 @@ a:hover { color: #fff; }
   border: 1px solid var(--border);
   padding: 0.15rem 0.45rem;
   border-radius: 4px;
-  font-family: 'Courier New', monospace;
-  font-size: 0.88em;
+  font-family: var(--font-mono);
+  font-size: 0.85em;
   color: var(--cyan);
+  background: var(--bg-1);
 }
+
+/* Code blocks in prose → dark terminal (shares pre.code styling below) */
+.prose pre { margin: 1.5rem 0; }
+.prose pre code { background: none; border: 0; padding: 0; color: inherit; font-size: inherit; }
 
 .prose hr {
   border: none;
@@ -479,7 +517,7 @@ a:hover { color: #fff; }
   display: inline-block;
   width: 2px;
   height: 1em;
-  background: var(--cyan);
+  background: var(--blue);
   margin-left: 2px;
   vertical-align: middle;
   animation: blink 1s step-end infinite;
@@ -512,6 +550,7 @@ a:hover { color: #fff; }
   color: #fff;
   font-size: 1.1rem;
   cursor: pointer;
+  box-shadow: 0 4px 14px #2563eb33;
   opacity: 0;
   pointer-events: none;
   transition: all var(--transition);
@@ -526,7 +565,7 @@ a:hover { color: #fff; }
 
 /* ── Responsive ───────────────────────────────────────────── */
 @media (max-width: 768px) {
-  .nav-links { display: none; flex-direction: column; position: absolute; top: 100%; left: 0; right: 0; background: var(--bg-1); border-bottom: 1px solid var(--border); padding: 1rem; gap: 0.25rem; }
+  .nav-links { display: none; flex-direction: column; position: absolute; top: 100%; left: 0; right: 0; background: #fff; border-bottom: 1px solid var(--border); box-shadow: var(--shadow-md); padding: 1rem; gap: 0.25rem; }
   .nav-links.open { display: flex; }
   .nav-toggle { display: block; }
   .grid-2, .grid-3 { grid-template-columns: 1fr; }
@@ -575,9 +614,47 @@ a:hover { color: #fff; }
 .lab-entry dt { color: var(--cyan); font-family: var(--font-head); font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; padding-top: 0.2rem; }
 .lab-entry dd { color: var(--text-2); }
 .lab-entry .wide { grid-column: 1 / -1; }
-.lab-entry:target { border-color: var(--cyan); box-shadow: 0 0 0 1px var(--cyan), 0 16px 48px #0005; }
+.lab-entry:target { border-color: var(--cyan); box-shadow: 0 0 0 1px var(--cyan), var(--shadow-md); }
 
-pre.code { background: var(--bg-0); border: 1px solid var(--border); border-radius: var(--radius); padding: 0.85rem 1rem; overflow-x: auto; font-family: 'Courier New', monospace; font-size: 0.8rem; line-height: 1.55; color: var(--text-1); margin-top: 0.75rem; }
+/* Terminal / code blocks — the dark islands on the white canvas */
+pre.code, .prose pre, .terminal {
+  position: relative;
+  background: var(--ink-0);
+  border: 1px solid var(--ink-border);
+  border-radius: var(--radius);
+  padding: 2.3rem 1rem 0.95rem;
+  overflow-x: auto;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  line-height: 1.6;
+  color: var(--ink-text);
+  margin-top: 0.75rem;
+  box-shadow: 0 8px 24px rgba(15,23,42,0.14);
+}
+/* window bar */
+pre.code::before, .prose pre::before, .terminal::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1.6rem;
+  background: var(--ink-1);
+  border-bottom: 1px solid var(--ink-border);
+}
+/* traffic-light dots */
+pre.code::after, .prose pre::after, .terminal::after {
+  content: '';
+  position: absolute;
+  top: 0.5rem; left: 0.8rem;
+  width: 46px; height: 10px;
+  background:
+    radial-gradient(circle at 5px 5px,  #ff5f56 4px, transparent 4.5px),
+    radial-gradient(circle at 23px 5px, #ffbd2e 4px, transparent 4.5px),
+    radial-gradient(circle at 41px 5px, #27c93f 4px, transparent 4.5px);
+}
+pre.code::selection, .prose pre ::selection, .terminal ::selection { background: #264f78; color: #fff; }
+.terminal .t-label { font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-muted); }
+.terminal .t-prompt { color: var(--ink-green); }
+.terminal .t-accent { color: var(--ink-cyan); }
 
 /* Tables */
 .table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; margin: 1.25rem 0 1.75rem; border: 1px solid var(--border); border-radius: var(--radius); }
@@ -587,7 +664,7 @@ pre.code { background: var(--bg-0); border: 1px solid var(--border); border-radi
 .data-table th { font-family: var(--font-head); font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--cyan); background: var(--bg-card); }
 .data-table td { color: var(--text-2); }
 .data-table td strong { color: var(--text-1); font-weight: 600; }
-.mono { font-family: 'Courier New', monospace; color: var(--cyan); font-size: 0.85em; white-space: nowrap; }
+.mono { font-family: var(--font-mono); color: var(--cyan); font-size: 0.85em; white-space: nowrap; }
 
 /* Case study pages */
 .glance { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem 1.5rem; }
